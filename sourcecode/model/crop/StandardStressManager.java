@@ -7,7 +7,7 @@ import utils.Constant;
 
 /**
  * Baseline stress calculation: a crop is stressed by low moisture,
- * low nutrients, and by drought weather. Returns the per-day delta.
+ * low nutrients, low sunlight and by drought weather. Returns the per-day delta.
  */
 public class StandardStressManager implements StressManager {
     @Override
@@ -16,6 +16,7 @@ public class StandardStressManager implements StressManager {
         // some basic conditions to calculate stress delta
         if (cell.getMoistureLevel() < 25)  stress += 15;
         if (cell.getNutrientLevel() < 20)  stress += 10;
+        if(cell.getSunlightLevel() < 15)   stress += 5;
         if (weather != null && weather.getType() == WeatherType.DROUGHT) stress += 10;
 
         // ideal conditions let the crop recover by STRESS_DECAY (clamped >= 0 in Crop)

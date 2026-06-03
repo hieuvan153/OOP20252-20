@@ -11,9 +11,9 @@ import utils.Constant;
 public class StandardGrowthManager implements GrowthManager {
     @Override
     public int calculateGrowthProgress(Cell cell, Weather weather) {
-        double moistureFactor = Math.min(cell.getMoistureLevel() / 50.0, 1);
-        double nutrientFactor = Math.min(cell.getNutrientLevel() / 50.0, 1);
-        double sunlightFactor = Math.min(cell.getSunlightLevel() / 50.0, 1);
+        double moistureFactor = Math.min(cell.getMoistureLevel() / 50.0, 1.0);
+        double nutrientFactor = Math.min(cell.getNutrientLevel() / 50.0, 1.0);
+        double sunlightFactor = Math.min(cell.getSunlightLevel() / 50.0, 1.0);
         double rate = (moistureFactor + nutrientFactor + sunlightFactor) / 3.0;
         return (int) Math.round(Constant.GROWTH_RATE * rate);
     }

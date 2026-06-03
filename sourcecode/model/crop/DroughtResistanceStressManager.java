@@ -16,6 +16,7 @@ public class DroughtResistanceStressManager implements StressManager {
         if (cell.getNutrientLevel() < 20) stress += 10;
         if (weather != null && weather.getType() == WeatherType.DROUGHT) stress += 2;  // not fear drought
         if (weather != null && weather.getType() == WeatherType.SUNNY) stress -= 10;  // loves sunlight
+        if(cell.getSunlightLevel() > 60)  stress -= 5;
         if (cell.getNutrientLevel() > 50) stress -= 5;
         return stress;
     }
