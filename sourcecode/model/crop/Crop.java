@@ -41,14 +41,31 @@ public class Crop {
     }
 
     // ---------- Getters ----------
-    public int  getCurrentStress()         { return currentStress; }
-    public int  getCurrentGrowthProgress() { return currentGrowthProgress; }
-    public GrowthState getCurrentState()   { return currentState; }
-    public CropData getCropData()          { return cropData; }
+    public int  getCurrentStress() {
+        return currentStress;
 
-    public boolean isHarvestable() { return currentState == GrowthState.HARVEST; }
-    public boolean isDead()        { return currentState == GrowthState.DEAD
-            || currentState == GrowthState.ROTTEN; }
+    }
+
+    public int  getCurrentGrowthProgress() {
+        return currentGrowthProgress;
+
+    }
+
+    public GrowthState getCurrentState() {
+        return currentState;
+    }
+
+    public CropData getCropData() {
+        return cropData;
+    }
+
+    public boolean isHarvestable() {
+        return currentState == GrowthState.HARVEST;
+    }
+
+    public boolean isDead() {
+        return currentState == GrowthState.DEAD || currentState == GrowthState.ROTTEN;
+    }
 
     // ---------- Daily simulation ----------
     public void dailyUpdate(Cell hostCell, Weather weather) {
@@ -105,7 +122,9 @@ public class Crop {
     }
 
     /** Common label for UI tooltip — overridden by species. */
-    public String getName() { return "Crop"; }
+    public String getName() {
+        return "Crop";
+    }
 
     private int safeCheckingValue(int v, int lo, int hi){
         if(v > hi) return hi;
