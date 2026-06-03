@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="720.0"
+            prefWidth="1280.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+   <!-- ====================================================== -->
+   <!-- TOP BAR -->
+   <!-- ====================================================== -->
+
+   <top>
+
+      <HBox alignment="CENTER_LEFT"
+            spacing="10">
+
+         <padding>
+            <Insets top="12"
+                    right="12"
+                    bottom="12"
+                    left="12"/>
+         </padding>
+
+         <!-- TOOL LABEL -->
+
+         <Label fx:id="toolLabel"
+                text="TOOL : HOE">
+            <font>
+               <Font name="Segoe UI Bold"
+                     size="22"/>
+            </font>
+
+         </Label>
+
+
+         <!-- GAME NOTIFICATION -->
+
+         <TextField fx:id="notificationField"
+                    editable="false"
+                    text="Game notification..."
+                    HBox.hgrow="ALWAYS"
+                    maxWidth="1.7976931348623157E308"/>
+
+      </HBox>
+
+   </top>
+
+
+   <!-- ====================================================== -->
+   <!-- CENTER GAME GRID -->
+   <!-- ====================================================== -->
+
+   <center>
+
+      <StackPane>
+
+         <padding>
+            <Insets top="20"
+                    right="20"
+                    bottom="20"
+                    left="20"/>
+         </padding>
+
+         <GridPane fx:id="farmGrid"
+                   alignment="CENTER"
+                   hgap="4"
+                   vgap="4"/>
+
+      </StackPane>
+
+   </center>
+
+
+   <!-- ====================================================== -->
+   <!-- RIGHT PANEL -->
+   <!-- ====================================================== -->
+
+   <right>
+
+      <VBox alignment="TOP_CENTER"
+            spacing="20"
+            prefWidth="180">
+
+         <padding>
+            <Insets top="20"
+                    right="20"
+                    bottom="20"
+                    left="20"/>
+         </padding>
+
+         <!-- DAY -->
+         <TextField fx:id="dayField"
+                    editable="false"
+                    alignment="CENTER"
+                    text="DAY 1"/>
+
+
+         <!-- WEATHER -->
+         <VBox alignment="CENTER"
+               spacing="10">
+            <Button fx:id="sunButton"
+                    mnemonicParsing="false"
+                    prefWidth="100"
+                    prefHeight="60"
+                    text="SUN"/>
+            <Button fx:id="rainButton"
+                    mnemonicParsing="false"
+                    prefWidth="100"
+                    prefHeight="60"
+                    text="RAIN"/>
+            <Button fx:id="dryButton"
+                    mnemonicParsing="false"
+                    prefWidth="100"
+                    prefHeight="60"
+                    text="DRY"/>
+
+         </VBox>
+
+         <!-- MONEY -->
+         <TextField fx:id="moneyField"
+                    editable="false"
+                    alignment="CENTER"
+                    text="\$200"/>
+
+      </VBox>
+
+   </right>
+
+
+   <!-- ====================================================== -->
+   <!-- BOTTOM PANEL -->
+   <!-- ====================================================== -->
+
+   <bottom>
+
+      <HBox alignment="CENTER_LEFT"
+            spacing="30">
+
+         <padding>
+            <Insets top="15"
+                    right="15"
+                    bottom="15"
+                    left="15"/>
+         </padding>
+
+
+         <!-- STATUS DASHBOARD -->
+         <VBox spacing="8">
+
+            <HBox spacing="15">
+               <Label fx:id="cellLabel"
+                      text="CELL : 4,4">
+                  <font>
+                     <Font name="Consolas Bold"
+                           size="16"/>
+                  </font>
+               </Label>
+
+               <Label fx:id="waterLabel"
+                      text="WATER : 40">
+                  <font>
+                     <Font name="Consolas Bold"
+                           size="16"/>
+                  </font>
+               </Label>
+
+               <Label fx:id="nutrientLabel"
+                      text="NUTR : 50">
+                  <font>
+                     <Font name="Consolas Bold"
+                           size="16"/>
+                  </font>
+               </Label>
+            </HBox>
+
+
+            <Label fx:id="cropLabel"
+                   text="CROP : NONE">
+               <font>
+                  <Font name="Consolas Bold"
+                        size="16"/>
+               </font>
+            </Label>
+
+
+         </VBox>
+         <!-- SPACER -->
+         <HBox HBox.hgrow="ALWAYS"/>
+
+         <!-- TOOL HOTBAR -->
+         <HBox alignment="CENTER"
+               spacing="10">
+            <Button fx:id="toolSlot1"
+                    mnemonicParsing="false"
+                    prefWidth="70"
+                    prefHeight="70"
+                    text="1"/>
+            <Button fx:id="toolSlot2"
+                    mnemonicParsing="false"
+                    prefWidth="70"
+                    prefHeight="70"
+                    text="2"/>
+            <Button fx:id="toolSlot3"
+                    mnemonicParsing="false"
+                    prefWidth="70"
+                    prefHeight="70"
+                    text="3"/>
+            <Button fx:id="toolSlot4"
+                    mnemonicParsing="false"
+                    prefWidth="70"
+                    prefHeight="70"
+                    text="4"/>
+            <Button fx:id="toolSlot5"
+                    mnemonicParsing="false"
+                    prefWidth="70"
+                    prefHeight="70"
+                    text="5"/>
+         </HBox>
+
+
+         <!-- SPACER -->
+         <HBox HBox.hgrow="ALWAYS"/>
+
+         <!-- ACTION BUTTONS -->
+         <VBox spacing="10">
+            <Button fx:id="shopButton"
+                    mnemonicParsing="false"
+                    prefWidth="140"
+                    prefHeight="45"
+                    text="SHOP"/>
+            <Button fx:id="nextDayButton"
+                    mnemonicParsing="false"
+                    prefWidth="140"
+                    prefHeight="45"
+                    text="NEXT DAY"/>
+         </VBox>
+
+      </HBox>
+
+   </bottom>
+</BorderPane>
