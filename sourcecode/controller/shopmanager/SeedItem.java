@@ -17,7 +17,7 @@ public class SeedItem implements ItemManager {
     }
 
     @Override
-    public String getName() {
+    public String getItem() {
         return name;
     }
 
