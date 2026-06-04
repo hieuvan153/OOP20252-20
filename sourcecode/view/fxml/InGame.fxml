@@ -4,10 +4,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -15,7 +16,8 @@
 <BorderPane prefHeight="720.0"
             prefWidth="1280.0"
             xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1">
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="view.screen_controller.InGameController">
 
    <!-- ====================================================== -->
    <!-- TOP BAR -->
@@ -33,19 +35,15 @@
                     left="12"/>
          </padding>
 
-         <!-- TOOL LABEL -->
-
          <Label fx:id="toolLabel"
                 text="TOOL : HOE">
+
             <font>
                <Font name="Segoe UI Bold"
                      size="22"/>
             </font>
 
          </Label>
-
-
-         <!-- GAME NOTIFICATION -->
 
          <TextField fx:id="notificationField"
                     editable="false"
@@ -100,35 +98,53 @@
                     left="20"/>
          </padding>
 
+
          <!-- DAY -->
+
          <TextField fx:id="dayField"
                     editable="false"
                     alignment="CENTER"
                     text="DAY 1"/>
 
 
-         <!-- WEATHER -->
+         <!-- WEATHER SELECT -->
+
          <VBox alignment="CENTER"
                spacing="10">
-            <Button fx:id="sunButton"
-                    mnemonicParsing="false"
-                    prefWidth="100"
-                    prefHeight="60"
-                    text="SUN"/>
-            <Button fx:id="rainButton"
-                    mnemonicParsing="false"
-                    prefWidth="100"
-                    prefHeight="60"
-                    text="RAIN"/>
-            <Button fx:id="dryButton"
-                    mnemonicParsing="false"
-                    prefWidth="100"
-                    prefHeight="60"
-                    text="DRY"/>
+
+            <ToggleButton fx:id="sunWeatherButton"
+                          mnemonicParsing="false"
+                          prefWidth="100"
+                          prefHeight="60"
+                          text="SUN">
+
+               <toggleGroup>
+                  <ToggleGroup fx:id="weatherGroup"/>
+               </toggleGroup>
+
+            </ToggleButton>
+
+
+            <ToggleButton fx:id="rainWeatherButton"
+                          mnemonicParsing="false"
+                          prefWidth="100"
+                          prefHeight="60"
+                          text="RAIN"
+                          toggleGroup="$weatherGroup"/>
+
+
+            <ToggleButton fx:id="dryWeatherButton"
+                          mnemonicParsing="false"
+                          prefWidth="100"
+                          prefHeight="60"
+                          text="DRY"
+                          toggleGroup="$weatherGroup"/>
 
          </VBox>
 
+
          <!-- MONEY -->
+
          <TextField fx:id="moneyField"
                     editable="false"
                     alignment="CENTER"
@@ -156,98 +172,148 @@
          </padding>
 
 
+         <!-- ================================================== -->
          <!-- STATUS DASHBOARD -->
+         <!-- ================================================== -->
+
          <VBox spacing="8">
 
             <HBox spacing="15">
+
                <Label fx:id="cellLabel"
                       text="CELL : 4,4">
+
                   <font>
                      <Font name="Consolas Bold"
                            size="16"/>
                   </font>
+
                </Label>
+
 
                <Label fx:id="waterLabel"
                       text="WATER : 40">
+
                   <font>
                      <Font name="Consolas Bold"
                            size="16"/>
                   </font>
+
                </Label>
+
 
                <Label fx:id="nutrientLabel"
                       text="NUTR : 50">
+
                   <font>
                      <Font name="Consolas Bold"
                            size="16"/>
                   </font>
+
                </Label>
+
             </HBox>
 
 
             <Label fx:id="cropLabel"
                    text="CROP : NONE">
+
                <font>
                   <Font name="Consolas Bold"
                         size="16"/>
                </font>
+
             </Label>
 
-
          </VBox>
+
+
          <!-- SPACER -->
+
          <HBox HBox.hgrow="ALWAYS"/>
 
+
+         <!-- ================================================== -->
          <!-- TOOL HOTBAR -->
+         <!-- ================================================== -->
+
          <HBox alignment="CENTER"
                spacing="10">
-            <Button fx:id="toolSlot1"
-                    mnemonicParsing="false"
-                    prefWidth="70"
-                    prefHeight="70"
-                    text="1"/>
-            <Button fx:id="toolSlot2"
-                    mnemonicParsing="false"
-                    prefWidth="70"
-                    prefHeight="70"
-                    text="2"/>
-            <Button fx:id="toolSlot3"
-                    mnemonicParsing="false"
-                    prefWidth="70"
-                    prefHeight="70"
-                    text="3"/>
-            <Button fx:id="toolSlot4"
-                    mnemonicParsing="false"
-                    prefWidth="70"
-                    prefHeight="70"
-                    text="4"/>
-            <Button fx:id="toolSlot5"
-                    mnemonicParsing="false"
-                    prefWidth="70"
-                    prefHeight="70"
-                    text="5"/>
+
+            <ToggleButton fx:id="hoeTool"
+                          mnemonicParsing="false"
+                          prefWidth="70"
+                          prefHeight="70"
+                          text="HOE">
+
+               <toggleGroup>
+                  <ToggleGroup fx:id="toolGroup"/>
+               </toggleGroup>
+
+            </ToggleButton>
+
+
+            <ToggleButton fx:id="waterTool"
+                          mnemonicParsing="false"
+                          prefWidth="70"
+                          prefHeight="70"
+                          text="WATER"
+                          toggleGroup="$toolGroup"/>
+
+
+            <ToggleButton fx:id="seedTool"
+                          mnemonicParsing="false"
+                          prefWidth="70"
+                          prefHeight="70"
+                          text="SEED"
+                          toggleGroup="$toolGroup"/>
+
+
+            <ToggleButton fx:id="shovelTool"
+                          mnemonicParsing="false"
+                          prefWidth="70"
+                          prefHeight="70"
+                          text="SHOVEL"
+                          toggleGroup="$toolGroup"/>
+
+
+            <ToggleButton fx:id="eraseTool"
+                          mnemonicParsing="false"
+                          prefWidth="70"
+                          prefHeight="70"
+                          text="ERASE"
+                          toggleGroup="$toolGroup"/>
+
          </HBox>
 
 
          <!-- SPACER -->
+
          <HBox HBox.hgrow="ALWAYS"/>
 
+
+         <!-- ================================================== -->
          <!-- ACTION BUTTONS -->
+         <!-- ================================================== -->
+
          <VBox spacing="10">
+
             <Button fx:id="shopButton"
                     mnemonicParsing="false"
                     prefWidth="140"
                     prefHeight="45"
                     text="SHOP"/>
+
             <Button fx:id="nextDayButton"
                     mnemonicParsing="false"
                     prefWidth="140"
                     prefHeight="45"
                     text="NEXT DAY"/>
+
          </VBox>
 
       </HBox>
 
    </bottom>
+
 </BorderPane>
