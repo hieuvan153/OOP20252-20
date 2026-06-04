@@ -28,6 +28,6 @@ public class FloodLovingGrowthManager implements GrowthManager {
         }
         else growth -= 5;
 
-        return growth;
+        return Math.max(0, growth);
     }
 }
