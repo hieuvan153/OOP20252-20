@@ -9,7 +9,7 @@ import java.util.Map;
 public class Inventory {
     private final Map<Item, Integer> items = new LinkedHashMap<>();
 
-    public map<Item, Integer> getItems() {
+    public Map<Item, Integer> getItems() {
         return Collections.unmodifiableMap(items);
     }
 
