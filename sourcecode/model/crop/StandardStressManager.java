@@ -20,7 +20,7 @@ public class StandardStressManager implements StressManager {
         if (weather != null && weather.getType() == WeatherType.DROUGHT) stress += 10;
 
         // ideal conditions let the crop recover by STRESS_DECAY (clamped >= 0 in Crop)
-        if (cell.getMoistureLevel() > 60 && cell.getNutrientLevel() > 40) {
+        if (cell.getMoistureLevel() > 60 && cell.getNutrientLevel() > 30 && cell.getSunlightLevel() > 30) {
             stress -= Constant.STRESS_DECAY;
         }
         return stress;

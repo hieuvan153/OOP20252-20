@@ -4,17 +4,26 @@ import model.soil.Cell;
 import model.weather.Weather;
 import utils.Constant;
 
-/**
- * Baseline growth: needs moisture, nutrient, and sun present.
- * Scales by how close each is to the optimum.
- */
 public class StandardGrowthManager implements GrowthManager {
     @Override
     public int calculateGrowthProgress(Cell cell, Weather weather) {
-        double moistureFactor = Math.min(cell.getMoistureLevel() / 50.0, 1.0);
-        double nutrientFactor = Math.min(cell.getNutrientLevel() / 50.0, 1.0);
-        double sunlightFactor = Math.min(cell.getSunlightLevel() / 50.0, 1.0);
-        double rate = (moistureFactor + nutrientFactor + sunlightFactor) / 3.0;
-        return (int) Math.round(Constant.GROWTH_RATE * rate);
+        // for general crop, if severe lack of water and sunlight -> growth rate = 0
+        if (cell.getMoistureLevel() < 10 || cell.getSunlightLevel() < 10) {
+            return 0;
+        }
+
+        int growth = Constant.GROWTH_RATE;
+
+        // Bonus if soil is nutritious
+        if (cell.getNutrientLevel() >= 50) {
+            growth += 5;
+        }
+
+        // Penalty if moisture or sunlight or nutrient level is modest
+        if (cell.getMoistureLevel() < 30) growth -= 2;
+        if (cell.getSunlightLevel() < 30) growth -= 2;
+        if (cell.getNutrientLevel() < 30) growth -= 2;
+
+        return Math.max(0, growth);  // avoid growth rate < 0
     }
 }
