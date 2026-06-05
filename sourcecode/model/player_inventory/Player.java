@@ -24,7 +24,7 @@ public class Player {
 
         try {
             money = Math.addExact(money, amount);
-        } catch (ArithmeticException overflow {
+        } catch (ArithmeticException overflow) {
             money = Integer.MAX_VALUE;
         }
     }
