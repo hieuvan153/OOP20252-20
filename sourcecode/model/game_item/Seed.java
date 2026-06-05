@@ -21,8 +21,6 @@ public abstract class Seed extends Item {
         this.waterPerDay = waterPerDay;
     }
 
-    public abstract Crop createCrop();
-
     public int getYieldValue() {
         return yieldValue;
     }
@@ -39,4 +37,6 @@ public abstract class Seed extends Item {
     public String getStats(){
         return String.format("GROWS: %d DAYS  WATER: %d/D  SELL: $%d", growDays, waterPerDay, yieldValue);
     }
+
+    public abstract Crop createCrop();
 }
