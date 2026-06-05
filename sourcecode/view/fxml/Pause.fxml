@@ -5,7 +5,7 @@
 
 <!-- Màn hình Tạm Dừng (Pause). Chỉ giữ liên kết với file PauseController -->
 
-<StackPane alignment="CENTER" styleClass="overlay-scrim" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="view.pause_controller.PauseController">
+<StackPane alignment="CENTER" styleClass="overlay-scrim" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="view.screen_controller.PauseController">
     <children>
         <VBox alignment="CENTER" maxHeight="320" maxWidth="320" spacing="14" styleClass="wood-panel">
             <children>
