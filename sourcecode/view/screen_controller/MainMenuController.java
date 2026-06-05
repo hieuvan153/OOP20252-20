@@ -1,31 +1,69 @@
 package view.screen_controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import view.screen_util.SceneRouter;
+import view.screen_util.Screens;
 
 public final class MainMenuController {
 
     @FXML
     private Button btnContinue;
 
+    private SceneRouter router;
+
+    public void setRouter(SceneRouter router) {
+        this.router = router;
+    }
 
     @FXML
     private void onContinue() {
-        //Continue button clicked - Logic to be implemented later
+        if (router != null) {
+            try {
+                router.show(Screens.INGAME);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
     private void onStartNew() {
-        //Start New button clicked - Logic to be implemented later
+        // Normally this would trigger resetting the game state via GameManager,
+        // but per the requirement, we only handle view-level routing here.
+        if (router != null) {
+            try {
+                router.show(Screens.INGAME);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
     private void onHelp() {
-        //Help button clicked - Page routing logic to be implemented later
+        if (router != null) {
+            try {
+                router.show(Screens.HELP);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
     private void onQuit() {
-        //Quit button clicked - Exit game logic to be implemented later
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit Game");
+        alert.setHeaderText("Are you sure you want to quit?");
+        alert.setContentText("All unsaved progress will be lost.");
+        
+        if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            Platform.exit();
+            System.exit(0);
+        }
     }
 }
