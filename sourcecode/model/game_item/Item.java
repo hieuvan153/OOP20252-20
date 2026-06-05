@@ -2,7 +2,7 @@ package model.game_item;
 
 import java.util.Objects;
 
-public class Item {
+public abstract class Item {
     protected final String name;
     protected final int price;
 

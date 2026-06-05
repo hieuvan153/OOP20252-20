@@ -33,7 +33,7 @@ public class Inventory {
         if (item == null || quantity == 0) return false;
 
         int current = items.get(item);
-        if(current == null || current < quantity) return false;
+        if(current == 0 || current < quantity) return false;
 
         int left = current - quantity;
         if(left == 0) {
@@ -45,13 +45,8 @@ public class Inventory {
         return true;
     }
 
-    public getItemCount(Item item) {
-        if (items.containsKey(item)) {
-            return items.get(item);
-        }
-        else {
-            return 0;
-        }
+    public int getItemCount(Item item) {
+        return items.getOrDefault(item, 0);
     }
 
     public Item findByName(String name) {
