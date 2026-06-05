@@ -8,6 +8,8 @@ import javafx.scene.control.ButtonType;
 import view.screen_util.SceneRouter;
 import view.screen_util.Screens;
 
+import java.io.IOException;
+
 public final class MainMenuController {
 
     @FXML

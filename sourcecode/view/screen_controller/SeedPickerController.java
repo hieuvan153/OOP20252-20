@@ -1,5 +1,7 @@
 package view.screen_controller;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -69,11 +71,15 @@ public final class SeedPickerController {
         Button use = new Button("USE");
         use.getStyleClass().add("btn-gold");
         use.setDisable(qty <= 0); // Disable button if out of seeds
-        use.setOnAction(e -> {
-            onPick.accept(seedName);
-            System.out.println("Selected seed: " + seedName); // Print to console for testing
-            routeToInGame();
+        use.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                onPick.accept(seedName);
+                System.out.println("Selected seed: " + seedName); // Print to console for testing
+                routeToInGame();
+            }
         });
+
 
         // Wrap everything in an HBox row
         HBox row = new HBox(12, iconPlaceholder, name, spacer, use);
@@ -89,7 +95,7 @@ public final class SeedPickerController {
         routeToInGame();
     }
 
-    private void routeToInGame() {
+    private void routeToInGame(){
         if (router != null) {
             try {
                 router.show(Screens.INGAME);

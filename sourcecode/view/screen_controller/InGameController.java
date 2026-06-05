@@ -29,20 +29,20 @@ public class InGameController {
 
     // ======================== INITIALIZE ========================
     @FXML
-    public void initialize() {
+    private void initialize() {
         setupToolIcons();
         setupWeatherIcons();
     }
 
-    public void setRouter(SceneRouter router) {
+    private void setRouter(SceneRouter router) {
         this.router = router;
     }
 
-    public void openShop(ActionEvent event) throws Exception {
+    private void openShop(ActionEvent event) {
         try {
             router.show(Screens.SHOP);
         } catch(Exception e){
-            throw new Exception(e.getMessage());
+            e.printStackTrace();
         }
     }
 
