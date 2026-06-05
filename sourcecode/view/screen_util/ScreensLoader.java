@@ -3,7 +3,9 @@ package view.screen_util;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
+import view.screen_controller.HelpController;
 import view.screen_controller.InGameController;
+import view.screen_controller.MainMenuController;
 import view.screen_controller.ShopController;
 
 public final class ScreensLoader {
@@ -12,20 +14,18 @@ public final class ScreensLoader {
     public static SceneRouter loadAll() throws Exception {
         SceneRouter router = new SceneRouter();
 
-        /*  MAIN MENU, HELP and maybe more scenes to navigate later
 
         // ================= MAIN MENU ==================
         FXMLLoader mainMenuLoader = load(router, Screens.MAIN_MENU, Screens.MAIN_MENU_FXML);
 
-        MainMenuController ingameController = mainMenuLoader.getController();
-        MainMenuController.setRouter(router);
+        MainMenuController mainMenuController = mainMenuLoader.getController();
+        mainMenuController.setRouter(router);
 
         // ================= HELP ====================
         FXMLLoader helpLoader = load(router, Screens.HELP, Screens.HELP_FXML);
         HelpController helpController = helpLoader.getController();
-        HelpController.setRouter(router);
+        helpController.setRouter(router);
 
-        */
 
         // ================= INGAME =================
         FXMLLoader ingameLoader = load(router, Screens.INGAME, Screens.INGAME_FXML);
