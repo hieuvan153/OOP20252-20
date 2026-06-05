@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            prefWidth="1280"
-            prefHeight="720"
-            style="-fx-background-color: linear-gradient(to bottom, #92c5d6 0%, #bfe3c5 45%, #5b9b35 100%);">
+<BorderPane
+        prefHeight="720"
+        prefWidth="1280"
+        xmlns="http://javafx.com/javafx/17.0.12"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="view.screen_controller.ShopController">
 
     <!-- ================= TOP ================= -->
 
@@ -26,42 +18,27 @@
         <StackPane BorderPane.alignment="CENTER">
 
             <padding>
-                <Insets top="30" bottom="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
-            <Label text="SHOP"
-                   style="-fx-font-size: 42;
-                          -fx-font-family: 'Consolas';
-                          -fx-font-weight: bold;
-                          -fx-text-fill: #2f1d0f;
-                          -fx-background-color: #ead9ab;
-                          -fx-border-color: #4b2d12;
-                          -fx-border-width: 5;
-                          -fx-background-radius: 14;
-                          -fx-border-radius: 14;
-                          -fx-padding: 12 40 12 40;" />
+            <Label style="-fx-font-size: 36;                           -fx-font-weight: bold;" text="SHOP" />
 
         </StackPane>
 
     </top>
 
+
     <!-- ================= CENTER ================= -->
 
     <center>
 
-        <VBox alignment="TOP_CENTER"
-              spacing="20">
+        <VBox alignment="TOP_CENTER" spacing="20">
 
             <padding>
-                <Insets top="10" right="40" bottom="10" left="40"/>
+                <Insets bottom="10" left="30" right="30" top="10" />
             </padding>
 
-            <!-- TAB PANE -->
-
-            <TabPane prefWidth="950"
-                     prefHeight="500"
-                     tabClosingPolicy="UNAVAILABLE"
-                     style="-fx-font-size: 18;">
+            <TabPane prefHeight="500" prefWidth="950" tabClosingPolicy="UNAVAILABLE">
 
                 <tabs>
 
@@ -71,28 +48,18 @@
 
                         <content>
 
-                            <AnchorPane>
+                            <FlowPane fx:id="seedPane" hgap="20" prefHeight="500" prefWidth="900" vgap="20">
 
-                                <children>
+                                <padding>
+                                    <Insets bottom="20" left="20" right="20" top="20" />
+                                </padding>
 
-                                    <FlowPane fx:id="seedPane"
-                                              prefWidth="900"
-                                              prefHeight="500"
-                                              hgap="20"
-                                              vgap="20"
-                                              layoutX="20"
-                                              layoutY="20"
-                                              style="-fx-background-color: rgba(255,245,220,0.75);
-                                                     -fx-background-radius: 18;
-                                                     -fx-padding: 25;" />
-
-                                </children>
-
-                            </AnchorPane>
+                            </FlowPane>
 
                         </content>
 
                     </Tab>
+
 
                     <!-- FERTILIZER -->
 
@@ -100,24 +67,13 @@
 
                         <content>
 
-                            <AnchorPane>
+                            <FlowPane fx:id="fertilizerPane" hgap="20" prefHeight="500" prefWidth="900" vgap="20">
 
-                                <children>
+                                <padding>
+                                    <Insets bottom="20" left="20" right="20" top="20" />
+                                </padding>
 
-                                    <FlowPane fx:id="fertilizerPane"
-                                              prefWidth="900"
-                                              prefHeight="500"
-                                              hgap="20"
-                                              vgap="20"
-                                              layoutX="20"
-                                              layoutY="20"
-                                              style="-fx-background-color: rgba(255,245,220,0.75);
-                                                     -fx-background-radius: 18;
-                                                     -fx-padding: 25;" />
-
-                                </children>
-
-                            </AnchorPane>
+                            </FlowPane>
 
                         </content>
 
@@ -131,79 +87,42 @@
 
     </center>
 
+
     <!-- ================= BOTTOM ================= -->
 
     <bottom>
 
-        <HBox alignment="CENTER"
-              spacing="30"
-              BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER" spacing="20" BorderPane.alignment="CENTER">
 
             <padding>
-                <Insets top="15" right="40" bottom="25" left="40"/>
+                <Insets bottom="15" left="30" right="30" top="15" />
             </padding>
 
             <!-- MONEY -->
 
-            <Label text="\$200"
-                   style="-fx-font-size: 28;
-                          -fx-font-family: 'Consolas';
-                          -fx-font-weight: bold;
-                          -fx-text-fill: #ffd54a;
-                          -fx-background-color: #2f1d0f;
-                          -fx-background-radius: 10;
-                          -fx-padding: 8 20 8 20;
-                          -fx-border-color: #c98f3d;
-                          -fx-border-radius: 10;
-                          -fx-border-width: 3;" />
+            <Label style="-fx-font-size: 24;                           -fx-font-weight: bold;" text="\$200" />
 
-            <Pane HBox.hgrow="ALWAYS"/>
+            <Pane HBox.hgrow="ALWAYS" />
+
 
             <!-- PAGE CONTROL -->
 
-            <HBox alignment="CENTER"
-                  spacing="15">
+            <HBox alignment="CENTER" spacing="10">
 
-                <Button text="&lt;"
-                        prefWidth="60"
-                        prefHeight="45"
-                        style="-fx-font-size: 20;
-                               -fx-font-weight: bold;
-                               -fx-background-color: #9c6a34;
-                               -fx-text-fill: white;
-                               -fx-background-radius: 10;" />
+                <Button prefHeight="40" prefWidth="50" text="&lt;" />
 
-                <Label text="PAGE 1 / 2"
-                       style="-fx-font-size: 26;
-                              -fx-font-family: 'Consolas';
-                              -fx-text-fill: #ffe7a8;" />
+                <Label style="-fx-font-size: 20;" text="PAGE 1 / 2" />
 
-                <Button text="&gt;"
-                        prefWidth="60"
-                        prefHeight="45"
-                        style="-fx-font-size: 20;
-                               -fx-font-weight: bold;
-                               -fx-background-color: #9c6a34;
-                               -fx-text-fill: white;
-                               -fx-background-radius: 10;" />
+                <Button prefHeight="40" prefWidth="50" text="&gt;" />
 
             </HBox>
 
-            <Pane HBox.hgrow="ALWAYS"/>
+            <Pane HBox.hgrow="ALWAYS" />
 
-            <!-- BACK BUTTON -->
 
-            <Button text="BACK"
-                    prefWidth="110"
-                    prefHeight="50"
-                    style="-fx-font-size: 20;
-                           -fx-font-weight: bold;
-                           -fx-background-color: #9c6a34;
-                           -fx-text-fill: white;
-                           -fx-background-radius: 10;
-                           -fx-border-radius: 10;
-                           -fx-border-color: #4b2d12;
-                           -fx-border-width: 3;" />
+            <!-- BACK -->
+
+            <Button onAction="#backToGame" prefHeight="40" prefWidth="100" text="BACK" />
 
         </HBox>
 
