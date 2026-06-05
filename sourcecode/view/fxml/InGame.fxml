@@ -17,7 +17,16 @@
             prefWidth="1280.0"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="view.screen_controller.InGameController">
+            fx:controller="view.screen_controller.InGameController"
+
+            style="-fx-background-color:
+                   linear-gradient(to bottom,
+                   #17340c 0%,
+                   #294f14 10%,
+                   #c8c3a3 10%,
+                   #d8d1b2 78%,
+                   #102b00 100%);">
+
 
    <!-- ====================================================== -->
    <!-- TOP BAR -->
@@ -26,20 +35,23 @@
    <top>
 
       <HBox alignment="CENTER_LEFT"
-            spacing="10">
+            spacing="12"
+
+            style="-fx-background-color: #1d3b0f;">
 
          <padding>
-            <Insets top="12"
+            <Insets top="10"
                     right="12"
-                    bottom="12"
+                    bottom="10"
                     left="12"/>
          </padding>
 
          <Label fx:id="toolLabel"
-                text="TOOL : HOE">
+                text="TOOL : HAND"
+                textFill="#ffe7a8">
 
             <font>
-               <Font name="Segoe UI Bold"
+               <Font name="Consolas Bold"
                      size="22"/>
             </font>
 
@@ -49,7 +61,15 @@
                     editable="false"
                     text="Game notification..."
                     HBox.hgrow="ALWAYS"
-                    maxWidth="1.7976931348623157E308"/>
+                    maxWidth="1.7976931348623157E308"
+
+                    style="-fx-background-color: #f2e2b8;
+                           -fx-text-fill: #2f1d0f;
+                           -fx-font-size: 15;
+                           -fx-background-radius: 8;
+                           -fx-border-radius: 8;
+                           -fx-border-color: #4b2d12;
+                           -fx-border-width: 2;"/>
 
       </HBox>
 
@@ -57,24 +77,31 @@
 
 
    <!-- ====================================================== -->
-   <!-- CENTER GAME GRID -->
+   <!-- CENTER -->
    <!-- ====================================================== -->
 
    <center>
 
-      <StackPane>
+      <StackPane style="-fx-background-color: #d4ccb0;">
 
          <padding>
-            <Insets top="20"
-                    right="20"
-                    bottom="20"
-                    left="20"/>
+            <Insets top="18"
+                    right="18"
+                    bottom="18"
+                    left="18"/>
          </padding>
 
          <GridPane fx:id="farmGrid"
                    alignment="CENTER"
                    hgap="4"
-                   vgap="4"/>
+                   vgap="4"
+
+                   style="-fx-background-color: #3d220d;
+                          -fx-padding: 10;
+                          -fx-background-radius: 12;
+                          -fx-border-radius: 12;
+                          -fx-border-color: #8c6239;
+                          -fx-border-width: 4;"/>
 
       </StackPane>
 
@@ -88,14 +115,14 @@
    <right>
 
       <VBox alignment="TOP_CENTER"
-            spacing="20"
+            spacing="14"
             prefWidth="180">
 
          <padding>
-            <Insets top="20"
-                    right="20"
-                    bottom="20"
-                    left="20"/>
+            <Insets top="18"
+                    right="18"
+                    bottom="18"
+                    left="18"/>
          </padding>
 
 
@@ -104,19 +131,46 @@
          <TextField fx:id="dayField"
                     editable="false"
                     alignment="CENTER"
-                    text="DAY 1"/>
+                    text="DAY 1"
+
+                    style="-fx-background-color: #f2e2b8;
+                           -fx-text-fill: #2f1d0f;
+                           -fx-font-size: 22;
+                           -fx-font-family: 'Consolas';
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 8;
+                           -fx-border-radius: 8;
+                           -fx-border-color: #4b2d12;
+                           -fx-border-width: 3;"/>
 
 
-         <!-- WEATHER SELECT -->
+         <!-- WEATHER PANEL -->
 
          <VBox alignment="CENTER"
-               spacing="10">
+               spacing="10"
+
+               style="-fx-background-color: #8b5a2b;
+                      -fx-background-radius: 12;
+                      -fx-border-radius: 12;
+                      -fx-border-color: #4b2d12;
+                      -fx-border-width: 4;
+                      -fx-padding: 14;">
+
 
             <ToggleButton fx:id="sunWeatherButton"
                           mnemonicParsing="false"
                           prefWidth="100"
-                          prefHeight="60"
-                          text="SUN">
+                          prefHeight="55"
+                          text="SUN"
+
+                          style="-fx-background-color: #f2cf4a;
+                                 -fx-text-fill: #2f1d0f;
+                                 -fx-font-size: 15;
+                                 -fx-font-weight: bold;
+                                 -fx-background-radius: 10;
+                                 -fx-border-radius: 10;
+                                 -fx-border-color: #3d220d;
+                                 -fx-border-width: 3;">
 
                <toggleGroup>
                   <ToggleGroup fx:id="weatherGroup"/>
@@ -128,16 +182,36 @@
             <ToggleButton fx:id="rainWeatherButton"
                           mnemonicParsing="false"
                           prefWidth="100"
-                          prefHeight="60"
+                          prefHeight="55"
                           text="RAIN"
+
+                          style="-fx-background-color: #b67c3b;
+                                 -fx-text-fill: white;
+                                 -fx-font-size: 15;
+                                 -fx-font-weight: bold;
+                                 -fx-background-radius: 10;
+                                 -fx-border-radius: 10;
+                                 -fx-border-color: #3d220d;
+                                 -fx-border-width: 3;"
+
                           toggleGroup="$weatherGroup"/>
 
 
             <ToggleButton fx:id="dryWeatherButton"
                           mnemonicParsing="false"
                           prefWidth="100"
-                          prefHeight="60"
+                          prefHeight="55"
                           text="DRY"
+
+                          style="-fx-background-color: #b67c3b;
+                                 -fx-text-fill: white;
+                                 -fx-font-size: 15;
+                                 -fx-font-weight: bold;
+                                 -fx-background-radius: 10;
+                                 -fx-border-radius: 10;
+                                 -fx-border-color: #3d220d;
+                                 -fx-border-width: 3;"
+
                           toggleGroup="$weatherGroup"/>
 
          </VBox>
@@ -148,7 +222,17 @@
          <TextField fx:id="moneyField"
                     editable="false"
                     alignment="CENTER"
-                    text="\$200"/>
+                    text="\$200"
+
+                    style="-fx-background-color: #1f1207;
+                           -fx-text-fill: #ffd54a;
+                           -fx-font-size: 24;
+                           -fx-font-family: 'Consolas';
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 10;
+                           -fx-border-radius: 10;
+                           -fx-border-color: #c98f3d;
+                           -fx-border-width: 3;"/>
 
       </VBox>
 
@@ -162,26 +246,27 @@
    <bottom>
 
       <HBox alignment="CENTER_LEFT"
-            spacing="30">
+            spacing="18"
+
+            style="-fx-background-color: #0f2600;">
 
          <padding>
-            <Insets top="15"
-                    right="15"
-                    bottom="15"
-                    left="15"/>
+            <Insets top="8"
+                    right="12"
+                    bottom="8"
+                    left="12"/>
          </padding>
 
 
-         <!-- ================================================== -->
-         <!-- STATUS DASHBOARD -->
-         <!-- ================================================== -->
+         <!-- STATUS -->
 
-         <VBox spacing="8">
+         <VBox spacing="4">
 
-            <HBox spacing="15">
+            <HBox spacing="14">
 
                <Label fx:id="cellLabel"
-                      text="CELL : 4,4">
+                      text="CELL : 6,3"
+                      textFill="#ffe7a8">
 
                   <font>
                      <Font name="Consolas Bold"
@@ -192,7 +277,8 @@
 
 
                <Label fx:id="waterLabel"
-                      text="WATER : 40">
+                      text="WATER : 40"
+                      textFill="#ffe7a8">
 
                   <font>
                      <Font name="Consolas Bold"
@@ -203,7 +289,8 @@
 
 
                <Label fx:id="nutrientLabel"
-                      text="NUTR : 50">
+                      text="NUTR : 50"
+                      textFill="#ffe7a8">
 
                   <font>
                      <Font name="Consolas Bold"
@@ -216,7 +303,8 @@
 
 
             <Label fx:id="cropLabel"
-                   text="CROP : NONE">
+                   text="CROP : NONE"
+                   textFill="#ffe7a8">
 
                <font>
                   <Font name="Consolas Bold"
@@ -233,18 +321,24 @@
          <HBox HBox.hgrow="ALWAYS"/>
 
 
-         <!-- ================================================== -->
          <!-- TOOL HOTBAR -->
-         <!-- ================================================== -->
 
          <HBox alignment="CENTER"
-               spacing="10">
+               spacing="8">
 
             <ToggleButton fx:id="hoeTool"
                           mnemonicParsing="false"
-                          prefWidth="70"
-                          prefHeight="70"
-                          text="HOE">
+                          prefWidth="62"
+                          prefHeight="62"
+                          text="HOE"
+
+                          style="-fx-background-color: #b67c3b;
+                                 -fx-text-fill: white;
+                                 -fx-font-weight: bold;
+                                 -fx-background-radius: 10;
+                                 -fx-border-radius: 10;
+                                 -fx-border-color: #3d220d;
+                                 -fx-border-width: 3;">
 
                <toggleGroup>
                   <ToggleGroup fx:id="toolGroup"/>
@@ -255,33 +349,69 @@
 
             <ToggleButton fx:id="waterTool"
                           mnemonicParsing="false"
-                          prefWidth="70"
-                          prefHeight="70"
+                          prefWidth="62"
+                          prefHeight="62"
                           text="WATER"
+
+                          style="-fx-background-color: #b67c3b;
+                                 -fx-text-fill: white;
+                                 -fx-font-weight: bold;
+                                 -fx-background-radius: 10;
+                                 -fx-border-radius: 10;
+                                 -fx-border-color: #3d220d;
+                                 -fx-border-width: 3;"
+
                           toggleGroup="$toolGroup"/>
 
 
             <ToggleButton fx:id="seedTool"
                           mnemonicParsing="false"
-                          prefWidth="70"
-                          prefHeight="70"
+                          prefWidth="62"
+                          prefHeight="62"
                           text="SEED"
+
+                          style="-fx-background-color: #b67c3b;
+                                 -fx-text-fill: white;
+                                 -fx-font-weight: bold;
+                                 -fx-background-radius: 10;
+                                 -fx-border-radius: 10;
+                                 -fx-border-color: #3d220d;
+                                 -fx-border-width: 3;"
+
                           toggleGroup="$toolGroup"/>
 
 
             <ToggleButton fx:id="shovelTool"
                           mnemonicParsing="false"
-                          prefWidth="70"
-                          prefHeight="70"
+                          prefWidth="62"
+                          prefHeight="62"
                           text="SHOVEL"
+
+                          style="-fx-background-color: #f2cf4a;
+                                 -fx-text-fill: #2f1d0f;
+                                 -fx-font-weight: bold;
+                                 -fx-background-radius: 10;
+                                 -fx-border-radius: 10;
+                                 -fx-border-color: #3d220d;
+                                 -fx-border-width: 3;"
+
                           toggleGroup="$toolGroup"/>
 
 
             <ToggleButton fx:id="eraseTool"
                           mnemonicParsing="false"
-                          prefWidth="70"
-                          prefHeight="70"
+                          prefWidth="62"
+                          prefHeight="62"
                           text="ERASE"
+
+                          style="-fx-background-color: #b67c3b;
+                                 -fx-text-fill: white;
+                                 -fx-font-weight: bold;
+                                 -fx-background-radius: 10;
+                                 -fx-border-radius: 10;
+                                 -fx-border-color: #3d220d;
+                                 -fx-border-width: 3;"
+
                           toggleGroup="$toolGroup"/>
 
          </HBox>
@@ -292,23 +422,40 @@
          <HBox HBox.hgrow="ALWAYS"/>
 
 
-         <!-- ================================================== -->
          <!-- ACTION BUTTONS -->
-         <!-- ================================================== -->
 
-         <VBox spacing="10">
+         <VBox spacing="8">
 
             <Button fx:id="shopButton"
                     mnemonicParsing="false"
                     prefWidth="140"
-                    prefHeight="45"
-                    text="SHOP"/>
+                    prefHeight="42"
+                    text="SHOP"
+
+                    style="-fx-background-color: #f2cf4a;
+                           -fx-text-fill: #2f1d0f;
+                           -fx-font-size: 18;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 10;
+                           -fx-border-radius: 10;
+                           -fx-border-color: #4b2d12;
+                           -fx-border-width: 3;"/>
+
 
             <Button fx:id="nextDayButton"
                     mnemonicParsing="false"
                     prefWidth="140"
-                    prefHeight="45"
-                    text="NEXT DAY"/>
+                    prefHeight="42"
+                    text="NEXT DAY"
+
+                    style="-fx-background-color: #b67c3b;
+                           -fx-text-fill: white;
+                           -fx-font-size: 18;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 10;
+                           -fx-border-radius: 10;
+                           -fx-border-color: #4b2d12;
+                           -fx-border-width: 3;"/>
 
          </VBox>
 
