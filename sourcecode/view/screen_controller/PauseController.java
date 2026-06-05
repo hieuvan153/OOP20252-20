@@ -1,7 +1,12 @@
 package view.screen_controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import view.screen_util.SceneRouter;
+import view.screen_util.Screens;
 
 public final class PauseController {
     @FXML
@@ -11,32 +16,44 @@ public final class PauseController {
     @FXML
     private Button btnQuitGame;
 
-    private Runnable resumeAction = new Runnable() {
-        @Override
-        public void run() {}
-    };
+    private SceneRouter router;
 
-    private Runnable mainMenuAction = new Runnable() {
-        @Override
-        public void run() {}
-    };
-
-    private Runnable quitAction = new Runnable() {
-        @Override
-        public void run() {}
-    };
-
-    public void init(Runnable onResume, Runnable onMainMenu, Runnable onQuit) {
-        if (onResume   != null) this.resumeAction   = onResume;
-        if (onMainMenu != null) this.mainMenuAction = onMainMenu;
-        if (onQuit     != null) this.quitAction     = onQuit;
+    public void setRouter(SceneRouter router) {
+        this.router = router;
     }
 
     @FXML
-    private void onResume()   { resumeAction.run(); }
-    @FXML
-    private void onMainMenu() { mainMenuAction.run(); }
-    @FXML
-    private void onQuit()     { quitAction.run(); }
+    private void onResume() {
+        if (router != null) {
+            try {
+                router.show(Screens.INGAME);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
+    @FXML
+    private void onMainMenu() {
+        if (router != null) {
+            try {
+                router.show(Screens.MAIN_MENU);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    private void onQuit() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit Game");
+        alert.setHeaderText("Are you sure you want to quit?");
+        alert.setContentText("All unsaved progress will be lost.");
+        
+        if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            Platform.exit();
+            System.exit(0);
+        }
+    }
 }

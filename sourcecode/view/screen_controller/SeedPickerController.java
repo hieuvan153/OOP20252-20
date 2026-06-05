@@ -8,9 +8,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import view.screen_util.SceneRouter;
+import view.screen_util.Screens;
 
 import java.util.function.Consumer;
-
 
 public final class SeedPickerController {
 
@@ -19,22 +20,19 @@ public final class SeedPickerController {
     @FXML
     private Button btnCancel;
 
+    private SceneRouter router;
+
     private Consumer<String> onPick = new Consumer<String>() {
         @Override
         public void accept(String s) {}
     };
 
-    private Runnable onClose = new Runnable() {
-        @Override
-        public void run() {}
-    };
+    public void setRouter(SceneRouter router) {
+        this.router = router;
+    }
 
-
-    // Removed Player dependency from the init method
-    public void init(Consumer<String> onPick, Runnable onClose) {
+    public void init(Consumer<String> onPick) {
         if (onPick != null) this.onPick = onPick;
-        if (onClose != null) this.onClose = onClose;
-
         populateDummyData(); // Call mock data generator
     }
 
@@ -49,13 +47,6 @@ public final class SeedPickerController {
 
             // Test case: quantity is 0 (USE button should be disabled)
             list.getChildren().add(makeRow("Potato Seed", 0));
-
-            /*
-             - (Commented out) To test the empty state UI:
-             - Label empty = new Label("No seeds yet — visit the Shop!");
-             - empty.getStyleClass().add("seed-empty");
-             - list.getChildren().add(empty);
-             */
         }
     }
 
@@ -80,8 +71,8 @@ public final class SeedPickerController {
         use.setDisable(qty <= 0); // Disable button if out of seeds
         use.setOnAction(e -> {
             onPick.accept(seedName);
-            onClose.run();
             System.out.println("Selected seed: " + seedName); // Print to console for testing
+            routeToInGame();
         });
 
         // Wrap everything in an HBox row
@@ -95,6 +86,16 @@ public final class SeedPickerController {
     @FXML
     private void onCancel() {
         System.out.println("Cancel button clicked");
-        onClose.run();
+        routeToInGame();
+    }
+
+    private void routeToInGame() {
+        if (router != null) {
+            try {
+                router.show(Screens.INGAME);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

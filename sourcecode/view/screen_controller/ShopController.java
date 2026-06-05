@@ -1,10 +1,9 @@
 package view.screen_controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import view.screen_util.SceneRouter;
 import view.screen_util.Screens;
-
-import java.io.IOException;
 
 public class ShopController {
     private SceneRouter router;
@@ -13,11 +12,14 @@ public class ShopController {
         this.router = router;
     }
 
-    public void backToGame(ActionEvent event) throws Exception {
-        try {
-            router.show(Screens.INGAME);
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
+    @FXML
+    public void backToGame(ActionEvent event) {
+        if (router != null) {
+            try {
+                router.show(Screens.INGAME);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

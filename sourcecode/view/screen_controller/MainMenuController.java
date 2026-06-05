@@ -32,8 +32,6 @@ public final class MainMenuController {
 
     @FXML
     private void onStartNew() {
-        // Normally this would trigger resetting the game state via GameManager,
-        // but per the requirement, we only handle view-level routing here.
         if (router != null) {
             try {
                 router.show(Screens.INGAME);
