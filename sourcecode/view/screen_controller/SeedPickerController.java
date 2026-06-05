@@ -96,6 +96,7 @@ public final class SeedPickerController {
     }
 
     private void routeToInGame(){
+        // TODO: close overplay, not show new scene
         if (router != null) {
             try {
                 router.show(Screens.INGAME);
