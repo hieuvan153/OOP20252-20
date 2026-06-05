@@ -1,6 +1,6 @@
 package model.game_item;
 
-public class Seed extends Item {
+public abstract class Seed extends Item {
     protected final int yieldValue;
     protected final int daysAvailableAfterRipe;
     protected final int maxStress;
@@ -35,4 +35,6 @@ public class Seed extends Item {
     public String getStats(){
         return String.format("GROWS: %d DAYS  WATER: %d/D  SELL: $%d", growDays, waterPerDay, yieldValue);
     }
+
+    public abstract Crop createCrop();
 }
