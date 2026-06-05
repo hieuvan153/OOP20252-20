@@ -173,7 +173,7 @@
 
          <HBox alignment="CENTER" spacing="10">
 
-            <ToggleButton fx:id="hoeTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="HOE">
+            <ToggleButton fx:id="seedTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="SEED">
 
                <toggleGroup>
                   <ToggleGroup fx:id="toolGroup" />
@@ -182,16 +182,16 @@
             </ToggleButton>
 
 
+            <ToggleButton fx:id="hoeTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="HOE" toggleGroup="$toolGroup" />
+
+
             <ToggleButton fx:id="waterTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="WATER" toggleGroup="$toolGroup" />
 
 
-            <ToggleButton fx:id="seedTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="SEED" toggleGroup="$toolGroup" />
+            <ToggleButton fx:id="handTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="HAND" toggleGroup="$toolGroup" />
 
 
-            <ToggleButton fx:id="shovelTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="SHOVEL" toggleGroup="$toolGroup" />
-
-
-            <ToggleButton fx:id="eraseTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="ERASE" toggleGroup="$toolGroup" />
+            <ToggleButton fx:id="fertilizerTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="FERTZ" toggleGroup="$toolGroup" />
 
          </HBox>
 

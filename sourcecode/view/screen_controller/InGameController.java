@@ -17,11 +17,11 @@ import view.screen_util.Screens;
 
 public class InGameController {
     // TOOL BUTTONS
+    @FXML private ToggleButton seedTool;
     @FXML private ToggleButton hoeTool;
     @FXML private ToggleButton waterTool;
-    @FXML private ToggleButton seedTool;
-    @FXML private ToggleButton shovelTool;
-    @FXML private ToggleButton eraseTool;
+    @FXML private ToggleButton handTool;
+    @FXML private ToggleButton fertilizerTool;
 
     // WEATHER BUTTONS
     @FXML private ToggleButton sunWeatherButton;
@@ -78,14 +78,14 @@ public class InGameController {
         hoeTool.setText(null);
         waterTool.setText(null);
         seedTool.setText(null);
-        shovelTool.setText(null);
-        eraseTool.setText(null);
+        handTool.setText(null);
+        fertilizerTool.setText(null);
 
         hoeTool.setGraphic(Assets.imageView(Assets.HOE_ICON, 48));
         waterTool.setGraphic(Assets.imageView(Assets.WATER_ICON, 48));
         seedTool.setGraphic(Assets.imageView(Assets.SEED_ICON, 48));
-        shovelTool.setGraphic(Assets.imageView(Assets.HAND_ICON, 48));
-        eraseTool.setGraphic(Assets.imageView(Assets.FERTILIZER_ICON, 48));
+        handTool.setGraphic(Assets.imageView(Assets.HAND_ICON, 48));
+        fertilizerTool.setGraphic(Assets.imageView(Assets.FERTILIZER_ICON, 48));
     }
 
     // SETUP WEATHER ICONS
