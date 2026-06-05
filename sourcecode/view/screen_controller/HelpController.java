@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 
-public class HelpController {
+public final class HelpController {
     @FXML
     private Button btnBack;
     @FXML

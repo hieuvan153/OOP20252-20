@@ -3,7 +3,7 @@ package view.screen_controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class MainMenuController {
+public final class MainMenuController {
 
     @FXML
     private Button btnContinue;
