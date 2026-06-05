@@ -38,6 +38,7 @@ public class InGameController {
         this.router = router;
     }
 
+    @FXML
     private void openShop(ActionEvent event) {
         try {
             router.show(Screens.SHOP);

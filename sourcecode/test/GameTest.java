@@ -16,7 +16,7 @@ public class GameTest extends Application {
 
         SceneRouter router = ScreensLoader.loadAll();
 
-        router.show(Screens.INGAME);
+        router.show(Screens.MAIN_MENU);
         Scene scene = new Scene(router.getRoot());
 
         stage.setScene(scene);
