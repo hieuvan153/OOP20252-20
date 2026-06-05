@@ -1,4 +1,4 @@
-package view.main_menu_controller;
+package view.screen_controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

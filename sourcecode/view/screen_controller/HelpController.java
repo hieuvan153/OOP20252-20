@@ -1,4 +1,4 @@
-package view.help_controller;
+package view.screen_controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,7 +40,7 @@ public class HelpController {
           crop next morning, the crop starts to suffer stress.
         """;
 
-    
+
     @FXML
     private void initialize() {
         if (body != null) {
