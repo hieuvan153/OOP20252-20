@@ -1,9 +1,16 @@
 package view.screen_controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
 
+import javafx.stage.Stage;
 import view.assets.Assets;
+import view.screen_util.SceneRouter;
+import view.screen_util.Screens;
 
 public class InGameController {
     // TOOL BUTTONS
@@ -18,14 +25,26 @@ public class InGameController {
     @FXML private ToggleButton rainWeatherButton;
     @FXML private ToggleButton dryWeatherButton;
 
+    private SceneRouter router;
 
-    // INITIALIZE
+    // ======================== INITIALIZE ========================
     @FXML
     public void initialize() {
         setupToolIcons();
         setupWeatherIcons();
     }
 
+    public void setRouter(SceneRouter router) {
+        this.router = router;
+    }
+
+    public void openShop(ActionEvent event) throws Exception {
+        try {
+            router.show(Screens.SHOP);
+        } catch(Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 
     // SETUP TOOL ICONS
     private void setupToolIcons() {
