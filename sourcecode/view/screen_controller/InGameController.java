@@ -34,7 +34,7 @@ public class InGameController {
         setupWeatherIcons();
     }
 
-    private void setRouter(SceneRouter router) {
+    public void setRouter(SceneRouter router) {
         this.router = router;
     }
 
