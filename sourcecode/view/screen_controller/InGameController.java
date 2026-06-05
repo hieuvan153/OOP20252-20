@@ -1,5 +1,6 @@
 package view.screen_controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.assets.Assets;
 import view.screen_util.SceneRouter;
@@ -25,6 +28,8 @@ public class InGameController {
     @FXML private ToggleButton rainWeatherButton;
     @FXML private ToggleButton dryWeatherButton;
 
+    @FXML private BorderPane rootPane;
+
     private SceneRouter router;
 
     // ======================== INITIALIZE ========================
@@ -32,10 +37,31 @@ public class InGameController {
     private void initialize() {
         setupToolIcons();
         setupWeatherIcons();
+
+        setKeyPressed();
     }
 
     public void setRouter(SceneRouter router) {
         this.router = router;
+    }
+
+    @FXML
+    private void setKeyPressed() {
+        // Esc to Pause
+        rootPane.setFocusTraversable(true);
+        Platform.runLater(() -> rootPane.requestFocus());
+
+        rootPane.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case ESCAPE -> {
+                    if (router.hasOverlay()) {
+                        router.closeOverlay();
+                    } else {
+                        router.showOverlay(router.getScreen(Screens.PAUSE));
+                    }
+                }
+            }
+        });
     }
 
     @FXML
