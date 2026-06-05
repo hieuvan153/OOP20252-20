@@ -24,13 +24,7 @@ public final class PauseController {
 
     @FXML
     private void onResume() {
-        if (router != null) {
-            try {
-                router.show(Screens.INGAME);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        router.closeOverlay();
     }
 
     @FXML
