@@ -6,11 +6,6 @@ import utils.Constant;
 
 import java.util.Objects;
 
-/**
- * A single plot of land on the farm grid.
- * Holds soil resources (nutrient / moisture / sunlight), its tilled state,
- * the current crop and any pest currently on it.
- */
 public class Cell {
     private final int x;
     private final int y;
@@ -35,14 +30,37 @@ public class Cell {
     }
 
     // ---------- Getters ----------
-    public int getX()                { return x; }
-    public int getY()                { return y; }
-    public int getNutrientLevel()    { return nutrientLevel; }
-    public int getMoistureLevel()    { return moistureLevel; }
-    public int getSunlightLevel()    { return sunlightLevel; }
-    public CellState getCellState()  { return state; }
-    public Crop getCrop()            { return currentCrop; }
-    public Pest getPest()            { return currentPest; }
+    public int getX() {
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
+    public int getNutrientLevel(){
+        return nutrientLevel;
+    }
+
+    public int getMoistureLevel(){
+        return moistureLevel;
+    }
+
+    public int getSunlightLevel(){
+        return sunlightLevel;
+    }
+
+    public CellState getCellState() {
+        return state;
+    }
+
+    public Crop getCrop(){
+        return currentCrop;
+    }
+
+    public Pest getPest(){
+        return currentPest;
+    }
 
     // ---------- Player / system actions ----------
     /** hoe the cell */
@@ -78,7 +96,7 @@ public class Cell {
         this.currentPest = Objects.requireNonNull(pest, "pest must not be null");
     }
 
-    /** Remove pest from the cell (player action: Hand). */
+    /** Remove pest from the cell */
     public void handlePest() {
         this.currentPest = null;
     }
@@ -113,7 +131,7 @@ public class Cell {
      *   3) the pest (if any) attacks the crop
      *   4) baseline moisture evaporation, independent of crops
      */
-    public void dailyTick(Weather weather) {
+    public void dailyUpdate(Weather weather) {
         if (weather != null) weather.applyWeatherEffect(this);
 
         if (currentCrop != null) {
@@ -131,9 +149,9 @@ public class Cell {
         updateMoistureAmount(-Constant.MOISTURE_EVAPORATION);
     }
 
-    private int safeCheckingValue(int v, int lo, int hi) {
-        if(v > hi) return hi;
-        if(v < lo) return lo;
+    private int safeCheckingValue(int v, int low, int high) {
+        if(v > high) return high;
+        if(v < low) return low;
         return v;
     }
 }

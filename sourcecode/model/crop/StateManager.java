@@ -8,5 +8,7 @@ public interface StateManager {
     GrowthState updateState(int currentGrowthProgress);
 
     /** How many days a crop can sit in HARVEST before rotting. */
-    default int getHarvestPatience() { return 3; }
+    default int getHarvestPatience() {
+        return 3;
+    }
 }

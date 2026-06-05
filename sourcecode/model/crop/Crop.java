@@ -7,14 +7,7 @@ import utils.Constant;
 
 import java.util.Objects;
 
-/**
- * A planted crop instance. A Crop is essentially a small state machine
- * driven by 3 pluggable strategies:
- *   - GrowthManager : how fast does it grow each day?
- *   - StressManager : how does it suffer this day?
- *   - StateManager  : which lifecycle stage does its progress map to?
- */
-public class Crop {
+public abstract class Crop {
     private int currentStress;
     private int currentGrowthProgress;
     private GrowthState currentState;
@@ -122,13 +115,11 @@ public class Crop {
     }
 
     /** Common label for UI tooltip — overridden by species. */
-    public String getName() {
-        return "Crop";
-    }
+    public abstract String getName();
 
-    private int safeCheckingValue(int v, int lo, int hi){
-        if(v > hi) return hi;
-        if(v < lo) return lo;
+    private int safeCheckingValue(int v, int low, int high){
+        if(v > high) return high;
+        if(v < low) return low;
         return v;
     }
 }
