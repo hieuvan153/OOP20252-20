@@ -55,7 +55,7 @@ public class FarmMap {
     public void updateAllCells(int day, Weather weather) {
         for (int r = 0; r < height; r++) {
             for (int c = 0; c < width; c++) {
-                grid[r][c].dailyTick(weather);
+                grid[r][c].dailyUpdate(weather);
             }
         }
     }
