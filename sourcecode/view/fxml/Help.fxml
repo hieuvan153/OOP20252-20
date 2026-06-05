@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- In-game manual - Isolated Version for Scene Builder -->
+
+<StackPane style="-fx-background-color: #87CEEB;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12">
+    <children>
+        <VBox alignment="CENTER" spacing="16">
+            <padding>
+                <Insets topRightBottomLeft="24" />
+            </padding>
+            <children>
+                <Label styleClass="plaque, title-lg" text="HELP" />
+
+                <Label fx:id="body" styleClass="parchment-card, ink-text, help-body" text="[The detailed game instructions will be displayed in this area]" />
+
+                <Button fx:id="btnBack" onAction="#onBack" styleClass="btn-wood" text="BACK" />
+            </children>
+        </VBox>
+    </children>
+</StackPane>
