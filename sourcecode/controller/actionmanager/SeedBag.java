@@ -12,7 +12,7 @@ public class SeedBag implements ToolStrategy {
     private final Player player;
     private String seedName;
 
-    public SeedBag(PLayer player) {
+    public SeedBag(Player player) {
         this.player = Objects.requireNonNull(player, "player must not be null");
     }
     public void loadSeed(String seedName) {
@@ -35,7 +35,7 @@ public class SeedBag implements ToolStrategy {
         if (player.getInventory().getItemCount(seed) <= 0) {
             return false;
         }
-        Crop crop =  seed.createCrop();
+        Crop crop = seed.createCrop();
         if (crop == null) {
             return false;
         }

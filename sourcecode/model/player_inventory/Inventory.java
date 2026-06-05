@@ -32,7 +32,7 @@ public class Inventory {
     public boolean removeItem(Item item, int quantity) {
         if (item == null || quantity == 0) return false;
 
-        int current = items.get(item);
+        Integer current = items.get(item);
         if(current == null || current < quantity) return false;
 
         int left = current - quantity;
@@ -45,7 +45,7 @@ public class Inventory {
         return true;
     }
 
-    public getItemCount(Item item) {
+    public int getItemCount(Item item) {
         if (items.containsKey(item)) {
             return items.get(item);
         }

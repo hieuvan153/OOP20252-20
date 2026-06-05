@@ -2,7 +2,7 @@ package controller.actionmanager;
 
 import controller.lifecyclemanager.BaseController;
 import controller.lifecyclemanager.GameManager;
-import model.player_inventory.PLayer;
+import model.player_inventory.Player;
 import model.soil.Cell;
 
 public class PlayerController extends BaseController {

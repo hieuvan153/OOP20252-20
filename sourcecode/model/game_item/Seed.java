@@ -1,6 +1,8 @@
 package model.game_item;
 
-public class Seed extends Item {
+import model.crop.Crop;
+
+public abstract class Seed extends Item {
     protected final int yieldValue;
     protected final int daysAvailableAfterRipe;
     protected final int maxStress;
@@ -18,6 +20,8 @@ public class Seed extends Item {
         this.growDays =growDays;
         this.waterPerDay = waterPerDay;
     }
+
+    public abstract Crop createCrop();
 
     public int getYieldValue() {
         return yieldValue;

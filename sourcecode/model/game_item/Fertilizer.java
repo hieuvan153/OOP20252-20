@@ -1,5 +1,9 @@
 package model.game_item;
 
+import model.soil.Cell;
+
+import java.util.Objects;
+
 public class Fertilizer extends Item {
     protected final int nutrientAmount;
 
@@ -15,6 +19,11 @@ public class Fertilizer extends Item {
 
     public int getNutrientAmount() {
         return nutrientAmount;
+    }
+
+    public void addNutrientAmount(Cell cell) {
+        Objects.requireNonNull(cell, "cell must not be null");
+        cell.updateNutrientAmount(nutrientAmount);
     }
 
     @Override
