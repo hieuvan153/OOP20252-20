@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  Title screen - Isolated Version for Scene Builder
+-->
+<StackPane xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: #87CEEB;">
+    <children>
+        <VBox alignment="CENTER" spacing="16">
+            <padding>
+                <Insets topRightBottomLeft="40"/>
+            </padding>
+            <children>
+                <Label text="SMART  FARM" styleClass="plaque, title-xl"/>
+                <Label text="Pixel Farm Simulator — JavaFX Edition" styleClass="subtitle-chip"/>
+                <Region minHeight="18"/>
+
+                <Button fx:id="continueBtn" text="CONTINUE  CURRENT  FARM" styleClass="btn-menu" />
+                <Button text="START  NEW  FARM" styleClass="btn-menu" />
+                <Button text="HELP" styleClass="btn-menu" />
+                <Button text="QUIT" styleClass="btn-menu" />
+            </children>
+        </VBox>
+    </children>
+</StackPane>
