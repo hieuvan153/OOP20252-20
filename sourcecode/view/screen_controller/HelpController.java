@@ -3,13 +3,16 @@ package view.screen_controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+import view.screen_util.SceneRouter;
+import view.screen_util.Screens;
 
 public final class HelpController {
     @FXML
     private Button btnBack;
     @FXML
     private Label body;
+
+    private SceneRouter router;
 
     private static final String BODY = """
         HOW TO PLAY
@@ -40,6 +43,9 @@ public final class HelpController {
           crop next morning, the crop starts to suffer stress.
         """;
 
+    public void setRouter(SceneRouter router) {
+        this.router = router;
+    }
 
     @FXML
     private void initialize() {
@@ -50,6 +56,12 @@ public final class HelpController {
 
     @FXML
     private void onBack() {
-        //Back button clicked - Return to Main Menu logic to be implemented later
+        if (router != null) {
+            try {
+                router.show(Screens.MAIN_MENU);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
