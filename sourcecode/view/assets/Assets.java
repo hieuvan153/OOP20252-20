@@ -2,6 +2,8 @@ package view.assets;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.crop.Crop;
+import model.crop.GrowthState;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +27,13 @@ public class Assets {
 
     // PEST
     public static Image BEETLE_ICON;
+
+    // CROP STATE
+    public static Image SEED_STATE;
+    public static Image SEEDLING_STATE;
+    public static Image MATURE_STATE;
+    public static Image DEAD_STATE;
+    public static Image ROTTEN_STATE;
 
     // SHOP ITEM ICONS
     private static final Map<String, Image> SHOP_ICONS = new HashMap<>();
@@ -56,6 +65,13 @@ public class Assets {
         // PEST
         BEETLE_ICON = loadImage("/view/assets/pest/beetle.png");
 
+        // SEED STATE
+        SEED_STATE      = loadImage("/view/assets/crop_state/seed.png");
+        SEEDLING_STATE  = loadImage("/view/assets/crop_state/seedling.png");
+        MATURE_STATE    = loadImage("/view/assets/crop_state/mature.png");
+        DEAD_STATE      = loadImage("/view/assets/crop_state/dead.png");
+        ROTTEN_STATE    = loadImage("/view/assets/crop_state/rotten.png");
+
         // TILES
         /*
         DIRT_TILE = loadImage("/view/assets/tiles/dirt.png");
@@ -76,6 +92,31 @@ public class Assets {
     // LOAD IMAGE
     private static Image loadImage(String path) {
         return new Image(Assets.class.getResourceAsStream(path));
+    }
+
+    public static Image getCropImage(Crop crop) {
+        if (crop == null) {
+            return null;
+        }
+
+        GrowthState state = crop.getCurrentState();
+        switch (state) {
+            case DEAD:
+                return DEAD_STATE;
+            case ROTTEN:
+                return ROTTEN_STATE;
+            case SEED:
+                return SEED_STATE;
+            case SEEDLING:
+                return SEEDLING_STATE;
+            case MATURE:
+                return MATURE_STATE;
+            case HARVEST:
+                return getShopIcon(crop.getAssetKey());
+
+            default:
+                return null;
+        }
     }
 
     // CREATE IMAGE VIEW
