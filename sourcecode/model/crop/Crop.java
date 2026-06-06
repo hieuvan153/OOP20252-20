@@ -34,6 +34,7 @@ public abstract class Crop {
     }
 
     // ---------- Getters ----------
+    
     public int  getCurrentStress() {
         return currentStress;
 

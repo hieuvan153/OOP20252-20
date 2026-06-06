@@ -68,7 +68,7 @@ public final class SeedPickerController {
     }
 
     private HBox makeRow(final Seed seed, int qty) {
-        ImageView icon = Assets.imageView(Assets.getShopIcon(seed.getAssetKey()), 36);
+        ImageView icon = Assets.imageView(Assets.getShopIcon(seed), 36);
 
         Label name = new Label(seed.getName() + "  x" + qty);
         name.getStyleClass().add("seed-name");

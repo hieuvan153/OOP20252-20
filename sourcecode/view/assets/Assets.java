@@ -2,6 +2,9 @@ package view.assets;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.crop.Crop;
+import model.crop.GrowthState;
+import model.game_item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +25,16 @@ public class Assets {
     // TILES
     public static Image DIRT_TILE;
     public static Image GRASS_TILE;
+
+    // PEST
+    public static Image BEETLE_ICON;
+
+    // CROP STATE
+    public static Image SEED_STATE;
+    public static Image SEEDLING_STATE;
+    public static Image MATURE_STATE;
+    public static Image DEAD_STATE;
+    public static Image ROTTEN_STATE;
 
     // SHOP ITEM ICONS
     private static final Map<String, Image> SHOP_ICONS = new HashMap<>();
@@ -50,6 +63,16 @@ public class Assets {
         loadShopIcon("tomato");
         loadShopIcon("water_rice");
 
+        // PEST
+        BEETLE_ICON = loadImage("/view/assets/pest/beetle.png");
+
+        // SEED STATE
+        SEED_STATE      = loadImage("/view/assets/crop_state/seed.png");
+        SEEDLING_STATE  = loadImage("/view/assets/crop_state/seedling.png");
+        MATURE_STATE    = loadImage("/view/assets/crop_state/mature.png");
+        DEAD_STATE      = loadImage("/view/assets/crop_state/dead.png");
+        ROTTEN_STATE    = loadImage("/view/assets/crop_state/rotten.png");
+
         // TILES
         /*
         DIRT_TILE = loadImage("/view/assets/tiles/dirt.png");
@@ -63,13 +86,44 @@ public class Assets {
         SHOP_ICONS.put(name.toLowerCase(), loadImage("/view/assets/shop/" + name + ".png"));
     }
 
-    public static Image getShopIcon(String itemName) {
-        return SHOP_ICONS.get(itemName.toLowerCase());
+    public static Image getShopIcon(String key) {
+        return SHOP_ICONS.get(key);
+    }
+    public static Image getShopIcon(Item item) {
+        String key = ItemAssetRegistry.getKey(item);
+        return getShopIcon(key);
     }
 
     // LOAD IMAGE
     private static Image loadImage(String path) {
         return new Image(Assets.class.getResourceAsStream(path));
+    }
+
+    public static Image getCropSprite(Crop crop) {
+        if (crop == null) {
+            return null;
+        }
+
+        String cropKey = CropAssetRegistry.getKey(crop);
+        GrowthState state = crop.getCurrentState();
+
+        switch (state) {
+            case DEAD:
+                return DEAD_STATE;
+            case ROTTEN:
+                return ROTTEN_STATE;
+            case SEED:
+                return SEED_STATE;
+            case SEEDLING:
+                return SEEDLING_STATE;
+            case MATURE:
+                return MATURE_STATE;
+            case HARVEST:
+                return getShopIcon(cropKey);
+
+            default:
+                return null;
+        }
     }
 
     // CREATE IMAGE VIEW
