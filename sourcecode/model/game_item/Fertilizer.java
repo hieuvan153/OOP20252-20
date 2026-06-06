@@ -7,8 +7,8 @@ import java.util.Objects;
 public abstract class Fertilizer extends Item {
     protected final int nutrientAmount;
 
-    public Fertilizer(String name, int price, int nutrientAmount){
-        super(name, price);
+    public Fertilizer(String name, String assetKey, int price, int nutrientAmount){
+        super(name, assetKey, price);
 
         if (nutrientAmount < 0) {
             throw new IllegalArgumentException("Fertilizer nutrient amount must be >= 0, was " + nutrientAmount);

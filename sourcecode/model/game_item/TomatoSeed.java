@@ -4,7 +4,7 @@ import model.crop.*;
 
 public class TomatoSeed extends Seed {
     public TomatoSeed() {
-        super("Tomato Seed", 15, 60, 3, 80, 6, 10);
+        super("Tomato Seed", "tomato", 15, 60, 3, 80, 6, 10);
     }
 
     @Override

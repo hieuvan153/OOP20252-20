@@ -3,6 +3,9 @@ package view.assets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Assets {
     // TOOL ICONS
     public static Image HOE_ICON;
@@ -20,6 +23,8 @@ public class Assets {
     public static Image DIRT_TILE;
     public static Image GRASS_TILE;
 
+    // SHOP ITEM ICONS
+    private static final Map<String, Image> SHOP_ICONS = new HashMap<>();
 
     // LOAD ALL ASSETS
     public static void load() {
@@ -37,6 +42,14 @@ public class Assets {
         RAIN_ICON = loadImage("/view/assets/weather/rain.png");
         DRY_ICON = loadImage("/view/assets/weather/dry.png");
 
+        // SHOP
+        loadShopIcon("corn");
+        loadShopIcon("standard_fertilizer");
+        loadShopIcon("potato");
+        loadShopIcon("sunflower");
+        loadShopIcon("tomato");
+        loadShopIcon("water_rice");
+
         // TILES
         /*
         DIRT_TILE = loadImage("/view/assets/tiles/dirt.png");
@@ -46,6 +59,13 @@ public class Assets {
         System.out.println("Assets loaded successfully.");
     }
 
+    private static void loadShopIcon(String name) {
+        SHOP_ICONS.put(name.toLowerCase(), loadImage("/view/assets/shop/" + name + ".png"));
+    }
+
+    public static Image getShopIcon(String itemName) {
+        return SHOP_ICONS.get(itemName.toLowerCase());
+    }
 
     // LOAD IMAGE
     private static Image loadImage(String path) {
