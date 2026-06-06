@@ -23,6 +23,9 @@ public class Assets {
     public static Image DIRT_TILE;
     public static Image GRASS_TILE;
 
+    // PEST
+    public static Image BEETLE_ICON;
+
     // SHOP ITEM ICONS
     private static final Map<String, Image> SHOP_ICONS = new HashMap<>();
 
@@ -49,6 +52,9 @@ public class Assets {
         loadShopIcon("sunflower");
         loadShopIcon("tomato");
         loadShopIcon("water_rice");
+
+        // PEST
+        BEETLE_ICON = loadImage("/view/assets/pest/beetle.png");
 
         // TILES
         /*
