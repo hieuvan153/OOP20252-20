@@ -10,98 +10,90 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import view.screen_util.SceneRouter;
-import view.screen_util.Screens;
-
+import model.game_item.Item;
+import model.game_item.Seed;
+import model.player_inventory.Player;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public final class SeedPickerController {
 
     @FXML
     private VBox list;
-    @FXML
-    private Button btnCancel;
-
-    private SceneRouter router;
 
     private Consumer<String> onPick = new Consumer<String>() {
         @Override
         public void accept(String s) {}
     };
 
-    public void setRouter(SceneRouter router) {
-        this.router = router;
+    private Runnable onClose = new Runnable() {
+        @Override
+        public void run() {}
+    };
+
+    // Wire the callbacks and fill the list from the player's inventory.
+    public void init(Player player, Consumer<String> onPick, Runnable onClose) {
+        if (onPick != null) this.onPick  = onPick;
+        if (onClose != null) this.onClose = onClose;
+        populate(player);
     }
 
-    public void init(Consumer<String> onPick) {
-        if (onPick != null) this.onPick = onPick;
-        populateDummyData(); // Call mock data generator
-    }
+    private void populate(Player player) {
+        if (list == null) return;
+        list.getChildren().clear();
 
-    // Generate mock data for UI testing
-    private void populateDummyData() {
-        if (list != null) {
-            list.getChildren().clear();
+        boolean any = false;
+        try {
+            if (player != null) {
+                for (Map.Entry<Item, Integer> e : player.getInventory().getItems().entrySet()) {
+                    if (e.getKey() instanceof Seed) {
+                        Seed seed = (Seed) e.getKey();
+                        any = true;
+                        list.getChildren().add(makeRow(seed.getName(), e.getValue()));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-            // Add 3 mock seed rows to test the UI layout
-            list.getChildren().add(makeRow("Tomato Seed", 5));
-            list.getChildren().add(makeRow("Carrot Seed", 12));
-
-            // Test case: quantity is 0 (USE button should be disabled)
-            list.getChildren().add(makeRow("Potato Seed", 0));
+        if (!any) {
+            Label empty = new Label("No seeds yet — visit the Shop!");
+            empty.getStyleClass().add("seed-name");
+            list.getChildren().add(empty);
         }
     }
 
-    // Create a single row displaying seed information
-    private HBox makeRow(String seedName, int qty) {
-        // MOCK ICON: Use a brown square region instead of the real SpriteView
-        Region iconPlaceholder = new Region();
-        iconPlaceholder.setMinSize(40, 40);
-        iconPlaceholder.setStyle("-fx-background-color: #8B4513; -fx-background-radius: 8;");
+    private HBox makeRow(final String seedName, int qty) {
+        Region icon = new Region();
+        icon.setMinSize(36, 36);
+        icon.setStyle("-fx-background-color: #6B8E23; -fx-background-radius: 6;");
 
-        // Seed name and quantity
-        Label name = new Label(seedName + "  ×" + qty);
+        Label name = new Label(seedName + "  x" + qty);
         name.getStyleClass().add("seed-name");
 
-        // Spacer to push the USE button to the far right
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        // USE button setup
         Button use = new Button("USE");
         use.getStyleClass().add("btn-gold");
-        use.setDisable(qty <= 0); // Disable button if out of seeds
+        use.setDisable(qty <= 0);
         use.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 onPick.accept(seedName);
-                System.out.println("Selected seed: " + seedName); // Print to console for testing
-                routeToInGame();
+                onClose.run();
             }
         });
 
-
-        // Wrap everything in an HBox row
-        HBox row = new HBox(12, iconPlaceholder, name, spacer, use);
+        HBox row = new HBox(12, icon, name, spacer, use);
         row.setAlignment(Pos.CENTER_LEFT);
         row.getStyleClass().add("seed-row");
         return row;
     }
 
-    // Handle CANCEL button action
     @FXML
     private void onCancel() {
-        System.out.println("Cancel button clicked");
-        routeToInGame();
-    }
-
-    private void routeToInGame(){
-        if (router != null) {
-            try {
-                router.show(Screens.INGAME);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        onClose.run();
     }
 }
