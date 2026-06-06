@@ -12,7 +12,6 @@ public abstract class Crop {
     private int currentGrowthProgress;
     private GrowthState currentState;
 
-    protected final String assetKey;
     protected final CropData cropData;
     protected final StateManager  stateManager;
     protected final StressManager stressManager;
@@ -21,11 +20,10 @@ public abstract class Crop {
     /** Counts how many days HARVEST has been pending — used to detect ROTTEN. */
     private int daysAtHarvest = 0;
 
-    public Crop(String assetKey, CropData cropData,
+    public Crop(CropData cropData,
                 StateManager  stateManager,
                 StressManager stressManager,
                 GrowthManager growthManager) {
-        this.assetKey = Objects.requireNonNull(assetKey, "assetKey must not be null");
         this.cropData = Objects.requireNonNull(cropData, "cropData must not be null");
         this.stateManager  = Objects.requireNonNull(stateManager,  "stateManager must not be null");
         this.stressManager = Objects.requireNonNull(stressManager, "stressManager must not be null");
@@ -36,10 +34,7 @@ public abstract class Crop {
     }
 
     // ---------- Getters ----------
-    public String getAssetKey() {
-        return assetKey;
-    }
-
+    
     public int  getCurrentStress() {
         return currentStress;
 

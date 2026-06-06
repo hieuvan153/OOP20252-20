@@ -9,8 +9,8 @@ public abstract class Seed extends Item {
     protected final int growDays;
     protected final int waterPerDay;
 
-    public Seed(String name, String assetKey, int price, int yieldValue, int daysAvailableAfterRipe, int maxStress, int growDays, int waterPerDay) {
-        super(name, assetKey, price);
+    public Seed(String name, int price, int yieldValue, int daysAvailableAfterRipe, int maxStress, int growDays, int waterPerDay) {
+        super(name, price);
         if (yieldValue < 0 || daysAvailableAfterRipe < 0 || maxStress < 0 || growDays < 0 || waterPerDay < 0) {
             throw new IllegalArgumentException("Seed numerical attributes must be >= 0");
         }
