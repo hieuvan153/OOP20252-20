@@ -34,6 +34,9 @@ public final class ShopViewController {
     public void setShop(Player player, ShopController shop) {
         this.player = player;
         this.shop   = shop;
+
+        moneyLabel.textProperty().bind(player.moneyProperty().asString("$%d"));
+
         build();
     }
 
@@ -51,7 +54,6 @@ public final class ShopViewController {
                 fertilizerPane.getChildren().add(card);
             }
         }
-        refreshMoney();
         if (statusLabel != null) statusLabel.setText("Welcome to the shop!");
     }
 
@@ -71,7 +73,6 @@ public final class ShopViewController {
             @Override
             public void handle(ActionEvent event) {
                 shop.buyItem(entry, 1);
-                refreshMoney();
                 if (statusLabel != null) statusLabel.setText(shop.getLastMessage());
             }
         });
@@ -81,12 +82,6 @@ public final class ShopViewController {
         card.getStyleClass().add("shop-card");
         card.setPrefWidth(260);
         return card;
-    }
-
-    private void refreshMoney() {
-        if (moneyLabel != null && player != null) {
-            moneyLabel.setText("$" + player.getMoney());
-        }
     }
 
     @FXML

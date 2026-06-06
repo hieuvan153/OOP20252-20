@@ -61,7 +61,7 @@ public class InGameController {
     @FXML private Label toolLabel;
     @FXML private TextField notificationField;
     @FXML private TextField dayField;
-    @FXML private TextField moneyField;
+    @FXML private Label moneyField;
     @FXML private Label cellLabel;
     @FXML private Label waterLabel;
     @FXML private Label nutrientLabel;
@@ -113,11 +113,12 @@ public class InGameController {
         this.hand           = new Hand(player);
         this.fertilizerBag  = new FertilizerBag("Standard Fertilizer", player);
 
+        moneyField.textProperty().bind(player.moneyProperty().asString("$%d"));
         wireButtons();
         setKeyHandlers();
         buildGrid();
         selectTool(hand, handTool);
-        refreshAll();
+        Platform.runLater(this::refreshAll);
     }
 
     // ======================== wiring ========================
@@ -296,7 +297,6 @@ public class InGameController {
             }
         }
         dayField.setText("DAY " + gameManager.getCurrentDay());
-        moneyField.setText("$" + player.getMoney());
         syncWeatherToggles();
         if (hovered != null) updateHover(hovered);
     }
