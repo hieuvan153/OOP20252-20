@@ -7,21 +7,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import view.screen_util.GameLauncher;
 import view.screen_util.SceneRouter;
-import view.screen_util.Screens;
 
 public final class PauseController {
-    @FXML
-    private Button btnResume;
-    @FXML
-    private Button btnMainMenu;
-    @FXML
-    private Button btnQuitGame;
+
+    @FXML private Button btnResume;
+    @FXML private Button btnMainMenu;
+    @FXML private Button btnQuitGame;
 
     private SceneRouter router;
     private GameLauncher launcher;
 
-    public void init(SceneRouter router,  GameLauncher launcher) {
-        this.router = router;
+    public void init(SceneRouter router, GameLauncher launcher) {
+        this.router   = router;
         this.launcher = launcher;
     }
 
@@ -39,10 +36,10 @@ public final class PauseController {
     @FXML
     private void onMainMenu() {
         try {
-            if(router != null) router.closeOverlay();
-            if(launcher != null) launcher.returnToMainMenu();
+            if (router != null) router.closeOverlay();
+            if (launcher != null) launcher.returnToMainMenu();
         } catch (Exception e) {
-                e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -52,10 +49,13 @@ public final class PauseController {
         alert.setTitle("Quit Game");
         alert.setHeaderText("Are you sure you want to quit?");
         alert.setContentText("All unsaved progress will be lost.");
-        
+
         if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
-            if(launcher != null) launcher.quit();
-            else Platform.exit();
+            if (launcher != null) {
+                launcher.quit();
+            } else {
+                Platform.exit();
+            }
         }
     }
 }

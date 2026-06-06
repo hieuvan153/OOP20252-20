@@ -1,5 +1,6 @@
 package view.screen_controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.assets.Assets;
 import view.screen_util.SceneRouter;
@@ -14,16 +17,18 @@ import view.screen_util.Screens;
 
 public class InGameController {
     // TOOL BUTTONS
+    @FXML private ToggleButton seedTool;
     @FXML private ToggleButton hoeTool;
     @FXML private ToggleButton waterTool;
-    @FXML private ToggleButton seedTool;
-    @FXML private ToggleButton shovelTool;
-    @FXML private ToggleButton eraseTool;
+    @FXML private ToggleButton handTool;
+    @FXML private ToggleButton fertilizerTool;
 
     // WEATHER BUTTONS
     @FXML private ToggleButton sunWeatherButton;
     @FXML private ToggleButton rainWeatherButton;
     @FXML private ToggleButton dryWeatherButton;
+
+    @FXML private BorderPane rootPane;
 
     private SceneRouter router;
 
@@ -32,10 +37,31 @@ public class InGameController {
     private void initialize() {
         setupToolIcons();
         setupWeatherIcons();
+
+        setKeyPressed();
     }
 
     public void setRouter(SceneRouter router) {
         this.router = router;
+    }
+
+    @FXML
+    private void setKeyPressed() {
+        // Esc to Pause
+        rootPane.setFocusTraversable(true);
+        Platform.runLater(() -> rootPane.requestFocus());
+
+        rootPane.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case ESCAPE -> {
+                    if (router.hasOverlay()) {
+                        router.closeOverlay();
+                    } else {
+                        router.showOverlay(router.getScreen(Screens.PAUSE));
+                    }
+                }
+            }
+        });
     }
 
     @FXML
@@ -52,14 +78,14 @@ public class InGameController {
         hoeTool.setText(null);
         waterTool.setText(null);
         seedTool.setText(null);
-        shovelTool.setText(null);
-        eraseTool.setText(null);
+        handTool.setText(null);
+        fertilizerTool.setText(null);
 
         hoeTool.setGraphic(Assets.imageView(Assets.HOE_ICON, 48));
         waterTool.setGraphic(Assets.imageView(Assets.WATER_ICON, 48));
         seedTool.setGraphic(Assets.imageView(Assets.SEED_ICON, 48));
-        shovelTool.setGraphic(Assets.imageView(Assets.HAND_ICON, 48));
-        eraseTool.setGraphic(Assets.imageView(Assets.FERTILIZER_ICON, 48));
+        handTool.setGraphic(Assets.imageView(Assets.HAND_ICON, 48));
+        fertilizerTool.setGraphic(Assets.imageView(Assets.FERTILIZER_ICON, 48));
     }
 
     // SETUP WEATHER ICONS
