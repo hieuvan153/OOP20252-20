@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import view.screen_util.GameLauncher;
 import view.screen_util.SceneRouter;
 import view.screen_util.Screens;
 
@@ -17,16 +18,18 @@ public final class PauseController {
     private Button btnQuitGame;
 
     private SceneRouter router;
+    private GameLauncher launcher;
 
-    public void setRouter(SceneRouter router) {
+    public void init(SceneRouter router,  GameLauncher launcher) {
         this.router = router;
+        this.launcher = launcher;
     }
 
     @FXML
     private void onResume() {
         if (router != null) {
             try {
-                router.show(Screens.INGAME);
+                router.closeOverlay();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -35,12 +38,11 @@ public final class PauseController {
 
     @FXML
     private void onMainMenu() {
-        if (router != null) {
-            try {
-                router.show(Screens.MAIN_MENU);
-            } catch (Exception e) {
+        try {
+            if(router != null) router.closeOverlay();
+            if(launcher != null) launcher.returnToMainMenu();
+        } catch (Exception e) {
                 e.printStackTrace();
-            }
         }
     }
 
@@ -52,8 +54,8 @@ public final class PauseController {
         alert.setContentText("All unsaved progress will be lost.");
         
         if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
-            Platform.exit();
-            System.exit(0);
+            if(launcher != null) launcher.quit();
+            else Platform.exit();
         }
     }
 }
