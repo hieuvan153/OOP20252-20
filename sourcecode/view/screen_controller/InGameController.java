@@ -19,6 +19,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
@@ -364,21 +365,38 @@ public class InGameController {
     private final class Tile {
         final Cell cell;
         final StackPane pane = new StackPane();
-        final Label info = new Label();
         final ImageView pestMark = Assets.imageView(Assets.BEETLE_ICON, 20);
+        final ImageView cropView = new ImageView();
+        final ProgressBar progressBar = new ProgressBar();
 
         Tile(final Cell cell) {
             this.cell = cell;
+
+            // crop state
+            cropView.setFitWidth(54);
+            cropView.setFitHeight(54);
+            cropView.setPreserveRatio(true);
+            cropView.setMouseTransparent(true);
+
+            // progress bar
+            progressBar.setPrefWidth(56);
+            progressBar.setPrefHeight(8);
+
+            progressBar.setMouseTransparent(true);
+
+            StackPane.setAlignment(progressBar, Pos.BOTTOM_CENTER);
+
+            progressBar.setTranslateY(-4);
+
+            // pest
+            pestMark.setMouseTransparent(true);
+            StackPane.setAlignment(pestMark, Pos.TOP_RIGHT);
+
+            // pane to add all
             pane.setMinSize(82, 82);
             pane.setPrefSize(82, 82);
             pane.setCursor(Cursor.HAND);
-            info.setMouseTransparent(true);
-            info.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
-            info.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12;"
-                    + "-fx-effect: dropshadow(gaussian, black, 2, 0.6, 0, 1);");
-            pestMark.setMouseTransparent(true);
-            StackPane.setAlignment(pestMark, Pos.TOP_RIGHT);
-            pane.getChildren().addAll(info, pestMark);
+            pane.getChildren().addAll(cropView, progressBar, pestMark);
 
             pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -418,16 +436,17 @@ public class InGameController {
                     + "-fx-border-radius: 6;");
 
             if (crop == null) {
-                info.setText("");
+                cropView.setImage(null);
+                progressBar.setVisible(false);
             } else {
-                GrowthState gs = crop.getCurrentState();
-                if (gs == GrowthState.DEAD) {
-                    info.setText("DEAD");
-                } else if (gs == GrowthState.ROTTEN) {
-                    info.setText("ROT");
-                } else {
-                    info.setText(abbrev(crop.getName()) + "\n" + crop.getCurrentGrowthProgress() + "%");
-                }
+                cropView.setImage(Assets.getCropImage(crop));
+                progressBar.setVisible(
+                        crop.getCurrentState() != GrowthState.HARVEST
+                                && crop.getCurrentState() != GrowthState.DEAD
+                                && crop.getCurrentState() != GrowthState.ROTTEN
+                );
+
+                progressBar.setProgress(crop.getCurrentGrowthProgress() / 100.0);
             }
             pestMark.setVisible(cell.getPest() != null);
         }
