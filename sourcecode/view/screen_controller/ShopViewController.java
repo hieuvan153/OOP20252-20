@@ -60,7 +60,7 @@ public final class ShopViewController {
     }
 
     private VBox makeCard(final ItemManager entry, Item prototype) {
-        ImageView icon = Assets.imageView(Assets.getShopIcon(prototype), 40);
+        ImageView icon = Assets.imageView(Assets.getShopIcon(prototype), 20);
 
         Label name = new Label(prototype.getName().toUpperCase());
         name.getStyleClass().add("shop-name");
@@ -85,7 +85,7 @@ public final class ShopViewController {
         VBox card = new VBox(8, icon, name, stats, price, buy);
         card.setAlignment(Pos.CENTER_LEFT);
         card.getStyleClass().add("shop-card");
-        card.setPrefWidth(260);
+        card.setPrefWidth(377);
         return card;
     }
 
