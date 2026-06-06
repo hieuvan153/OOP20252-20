@@ -4,12 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane
-        prefHeight="720"
-        prefWidth="1280"
-        xmlns="http://javafx.com/javafx/17.0.12"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="view.screen_controller.ShopViewController">
+<BorderPane prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screen_controller.ShopViewController">
 
     <!-- ================= TOP ================= -->
 
@@ -100,7 +95,7 @@
 
             <!-- MONEY -->
 
-            <Label style="-fx-font-size: 24;                           -fx-font-weight: bold;" text="\$200" />
+            <Label fx:id="moneyLabel" style="-fx-font-size: 24;                           -fx-font-weight: bold;" text="\$200" />
 
             <Pane HBox.hgrow="ALWAYS" />
 
@@ -109,11 +104,7 @@
 
             <HBox alignment="CENTER" spacing="10">
 
-                <Button prefHeight="40" prefWidth="50" text="&lt;" />
-
-                <Label style="-fx-font-size: 20;" text="PAGE 1 / 2" />
-
-                <Button prefHeight="40" prefWidth="50" text="&gt;" />
+                <Label fx:id="statusLabel" style="-fx-font-size: 20;" text="Welcome to the Shop!" />
 
             </HBox>
 
