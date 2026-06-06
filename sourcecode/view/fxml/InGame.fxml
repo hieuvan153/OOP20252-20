@@ -94,7 +94,7 @@
 
          <!-- MONEY -->
 
-         <TextField fx:id="moneyField" alignment="CENTER" editable="false" text="\$200" />
+         <Label fx:id="moneyField" alignment="CENTER" text="\$200" />
 
       </VBox>
 
@@ -118,7 +118,7 @@
          <!-- STATUS DASHBOARD -->
          <!-- ================================================== -->
 
-         <VBox spacing="8">
+         <VBox prefHeight="100.0" prefWidth="320.0" spacing="8">
 
             <HBox spacing="15">
 
