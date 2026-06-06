@@ -31,6 +31,14 @@ public class SceneRouter {
         root.getChildren().setAll(screen);
     }
 
+    public Parent getScreen(String name) {
+        Parent screen = screens.get(name);
+        if (screen == null) {
+            throw new SmartFarmException("Screen " + name + " not found");
+        }
+        return screen;
+    }
+
     public void showOverlay(Node overlay) {
         if(currentOverlay != null || overlay == null) {
             return;
