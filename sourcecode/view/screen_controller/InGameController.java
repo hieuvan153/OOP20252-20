@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -364,7 +365,7 @@ public class InGameController {
         final Cell cell;
         final StackPane pane = new StackPane();
         final Label info = new Label();
-        final Label pestMark = new Label("🐛");
+        final ImageView pestMark = Assets.imageView(Assets.BEETLE_ICON, 20);
 
         Tile(final Cell cell) {
             this.cell = cell;
