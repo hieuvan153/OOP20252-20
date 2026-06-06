@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import view.screen_util.GameLauncher;
 import view.screen_util.SceneRouter;
 import view.screen_util.Screens;
 
@@ -16,16 +17,22 @@ public final class MainMenuController {
     private Button btnContinue;
 
     private SceneRouter router;
+    private GameLauncher launcher;
 
-    public void setRouter(SceneRouter router) {
+    public void init(SceneRouter router, GameLauncher launcher) {
         this.router = router;
+        this.launcher = launcher;
+    }
+
+    public void setContinueEnabled(boolean enabled) {
+        if(btnContinue != null) btnContinue.setDisable(!enabled);
     }
 
     @FXML
     private void onContinue() {
-        if (router != null) {
+        if (launcher != null) {
             try {
-                router.show(Screens.INGAME);
+                launcher.continueFarm();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -34,9 +41,9 @@ public final class MainMenuController {
 
     @FXML
     private void onStartNew() {
-        if (router != null) {
+        if (launcher != null) {
             try {
-                router.show(Screens.INGAME);
+                launcher.startNewFarm();
             } catch (Exception e) {
                 e.printStackTrace();
             }
