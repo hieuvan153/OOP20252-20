@@ -92,6 +92,7 @@ public class InGameController {
 
     @FXML
     private void initialize() {
+        rootPane.getStylesheets().add(getClass().getResource("/view/css/Style.css").toExternalForm());
         setupToolIcons();
         setupWeatherIcons();
     }
