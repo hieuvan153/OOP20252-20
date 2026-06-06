@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screen_controller.ShopViewController">
+<BorderPane styleClass="shop-root" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screen_controller.ShopViewController">
 
     <!-- ================= TOP ================= -->
 
@@ -16,7 +16,7 @@
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
-            <Label style="-fx-font-size: 36;                           -fx-font-weight: bold;" text="SHOP" />
+            <Label style="-fx-font-size: 36;                           -fx-font-weight: bold;" text="SHOP" styleClass="shop-title" />
 
         </StackPane>
 
@@ -33,7 +33,7 @@
                 <Insets bottom="10" left="30" right="30" top="10" />
             </padding>
 
-            <TabPane prefHeight="500" prefWidth="950" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="500" prefWidth="950" tabClosingPolicy="UNAVAILABLE" styleClass="shop-tabs">
 
                 <tabs>
 
@@ -43,7 +43,7 @@
 
                         <content>
 
-                            <FlowPane fx:id="seedPane" hgap="20" prefHeight="500" prefWidth="900" vgap="20">
+                            <FlowPane fx:id="seedPane" styleClass="shop-flow" hgap="20" prefHeight="500" prefWidth="900" vgap="20">
 
                                 <padding>
                                     <Insets bottom="20" left="20" right="20" top="20" />
@@ -62,7 +62,7 @@
 
                         <content>
 
-                            <FlowPane fx:id="fertilizerPane" hgap="20" prefHeight="500" prefWidth="900" vgap="20">
+                            <FlowPane fx:id="fertilizerPane" styleClass="shop-flow" hgap="20" prefHeight="500" prefWidth="900" vgap="20">
 
                                 <padding>
                                     <Insets bottom="20" left="20" right="20" top="20" />
@@ -87,7 +87,7 @@
 
     <bottom>
 
-        <HBox alignment="CENTER" spacing="20" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER" styleClass="shop-bottom" spacing="20" BorderPane.alignment="CENTER">
 
             <padding>
                 <Insets bottom="15" left="30" right="30" top="15" />
@@ -95,7 +95,7 @@
 
             <!-- MONEY -->
 
-            <Label fx:id="moneyLabel" style="-fx-font-size: 24;                           -fx-font-weight: bold;" text="\$200" />
+            <Label fx:id="moneyLabel" style="-fx-font-size: 24;                           -fx-font-weight: bold;" text="\$200" styleClass="shop-money" />
 
             <Pane HBox.hgrow="ALWAYS" />
 
@@ -104,7 +104,7 @@
 
             <HBox alignment="CENTER" spacing="10">
 
-                <Label fx:id="statusLabel" style="-fx-font-size: 20;" text="Welcome to the Shop!" />
+                <Label fx:id="statusLabel" style="-fx-font-size: 20;" text="Welcome to the Shop!" styleClass="shop-status" />
 
             </HBox>
 
@@ -113,7 +113,7 @@
 
             <!-- BACK -->
 
-            <Button onAction="#backToGame" prefHeight="40" prefWidth="100" text="BACK" />
+            <Button onAction="#backToGame" prefHeight="40" prefWidth="100" text="BACK" styleClass="shop-back-btn" />
 
         </HBox>
 

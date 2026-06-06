@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screen_controller.InGameController">
+<BorderPane fx:id="rootPane" styleClass="ingame-root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screen_controller.InGameController">
 
    <!-- ====================================================== -->
    <!-- TOP BAR -->
@@ -13,7 +13,7 @@
 
    <top>
 
-      <HBox alignment="CENTER_LEFT" spacing="10">
+      <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="10">
 
          <padding>
             <Insets bottom="12" left="12" right="12" top="12" />
@@ -28,7 +28,7 @@
          </Label>
          <HBox prefHeight="28.0" prefWidth="150.0" />
 
-         <TextField fx:id="notificationField" editable="false" maxWidth="-Infinity" prefWidth="400.0" text="Game notification..." HBox.hgrow="ALWAYS" />
+         <TextField fx:id="notificationField" styleClass="notification-field" editable="false" maxWidth="-Infinity" prefWidth="400.0" text="Game notification..." HBox.hgrow="ALWAYS" />
 
       </HBox>
 
@@ -47,7 +47,7 @@
             <Insets bottom="20" left="20" right="20" top="20" />
          </padding>
 
-         <GridPane fx:id="farmGrid" alignment="CENTER" hgap="4" vgap="4" />
+         <GridPane fx:id="farmGrid" styleClass="farm-grid" alignment="CENTER" hgap="4" vgap="4" />
 
       </StackPane>
 
@@ -60,7 +60,7 @@
 
    <right>
 
-      <VBox alignment="TOP_CENTER" prefWidth="180" spacing="20">
+      <VBox styleClass="right-panel" alignment="TOP_CENTER" prefWidth="180" spacing="20">
 
          <padding>
             <Insets bottom="20" left="20" right="20" top="20" />
@@ -69,14 +69,14 @@
 
          <!-- DAY -->
 
-         <TextField fx:id="dayField" alignment="CENTER" editable="false" text="DAY 1" />
+         <TextField fx:id="dayField" styleClass="side-display" alignment="CENTER" editable="false" text="DAY 1" />
 
 
          <!-- WEATHER SELECT -->
 
          <VBox alignment="CENTER" spacing="10">
 
-            <ToggleButton fx:id="sunWeatherButton" mnemonicParsing="false" prefHeight="60" prefWidth="100" text="SUN">
+            <ToggleButton fx:id="sunWeatherButton" styleClass="weather-btn" mnemonicParsing="false" prefHeight="60" prefWidth="100" text="SUN">
 
                <toggleGroup>
                   <ToggleGroup fx:id="weatherGroup" />
@@ -85,17 +85,28 @@
             </ToggleButton>
 
 
-            <ToggleButton fx:id="rainWeatherButton" mnemonicParsing="false" prefHeight="60" prefWidth="100" text="RAIN" toggleGroup="$weatherGroup" />
+            <ToggleButton fx:id="rainWeatherButton" styleClass="weather-btn" mnemonicParsing="false" prefHeight="60" prefWidth="100" text="RAIN" toggleGroup="$weatherGroup" />
 
 
-            <ToggleButton fx:id="dryWeatherButton" mnemonicParsing="false" prefHeight="60" prefWidth="100" text="DRY" toggleGroup="$weatherGroup" />
+            <ToggleButton fx:id="dryWeatherButton" styleClass="weather-btn" mnemonicParsing="false" prefHeight="60" prefWidth="100" text="DRY" toggleGroup="$weatherGroup" />
 
          </VBox>
 
 
          <!-- MONEY -->
 
-         <Label fx:id="moneyField" alignment="CENTER" text="\$200" />
+         <StackPane styleClass="money-box">
+
+            <Label
+                    fx:id="moneyField"
+                    alignment="CENTER"
+                    prefHeight="80"
+                    prefWidth="120"
+                    text="\$200"
+                    styleClass="money-label"
+            />
+
+         </StackPane>
 
       </VBox>
 
@@ -108,7 +119,7 @@
 
    <bottom>
 
-      <HBox alignment="CENTER_LEFT" prefHeight="108.0" prefWidth="1280.0" spacing="30">
+      <HBox alignment="CENTER_LEFT" styleClass="bottom-bar" prefHeight="108.0" prefWidth="1280.0" spacing="30">
 
          <padding>
             <Insets bottom="15" left="15" right="15" top="15" />
@@ -119,7 +130,7 @@
          <!-- STATUS DASHBOARD -->
          <!-- ================================================== -->
 
-         <VBox prefHeight="100.0" prefWidth="320.0" spacing="8">
+         <VBox styleClass="status-panel" prefHeight="100.0" prefWidth="320.0" spacing="8">
 
             <HBox spacing="15">
 
@@ -172,7 +183,7 @@
          <!-- TOOL HOTBAR -->
          <!-- ================================================== -->
 
-         <HBox alignment="CENTER" spacing="10">
+         <HBox styleClass="tool-hotbar" alignment="CENTER" spacing="10">
 
             <ToggleButton fx:id="seedTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="SEED">
 
@@ -206,7 +217,7 @@
          <!-- ACTION BUTTONS -->
          <!-- ================================================== -->
 
-         <VBox spacing="10">
+         <VBox styleClass="action-panel" spacing="10">
 
             <Button fx:id="shopButton" mnemonicParsing="false" onAction="#openShop" prefHeight="45" prefWidth="140" text="SHOP" />
 
