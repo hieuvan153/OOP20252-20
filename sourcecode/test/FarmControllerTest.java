@@ -16,7 +16,7 @@ public class FarmControllerTest {
     private static Crop plantCrop(FarmMap map) {
         Cell c = map.getCell(0, 0);
         c.till();
-        Crop crop = new Crop(new CropData(10, 20, 80), new StandardStateManager(4, 3), new StandardStressManager(), new StandardGrowthManager());
+        Crop crop = new model.crop.Tomato();
         c.plantCrop(crop);
         c.updateMoistureAmount(100);
         c.updateNutrientAmount(100);
