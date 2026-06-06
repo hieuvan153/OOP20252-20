@@ -105,3 +105,17 @@
 }
 .shop-name  { -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #3A2910; }
 .shop-stats { -fx-font-size: 12px; -fx-text-fill: #5E3A1C; }
+
+/* ---------- Progress Bar ----------- */
+.progress-bar {
+    -fx-accent: #7ED957;
+}
+
+.progress-bar > .track {
+    -fx-background-color: rgba(0,0,0,0.4);
+    -fx-background-radius: 8;
+}
+
+.progress-bar > .bar {
+    -fx-background-radius: 8;
+}
