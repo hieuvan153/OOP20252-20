@@ -209,7 +209,7 @@
 
             <Button fx:id="shopButton" mnemonicParsing="false" onAction="#openShop" prefHeight="45" prefWidth="140" text="SHOP" />
 
-            <Button fx:id="nextDayButton" mnemonicParsing="false" prefHeight="45" prefWidth="140" text="NEXT DAY" />
+            <Button fx:id="nextDayButton" mnemonicParsing="false" onAction="#onNextDay" prefHeight="45" prefWidth="140" text="NEXT DAY" />
 
          </VBox>
 
