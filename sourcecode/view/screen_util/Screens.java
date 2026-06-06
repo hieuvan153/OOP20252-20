@@ -8,6 +8,8 @@ public final class Screens {
     public static final String HELP      = "help";
     public static final String INGAME   = "ingame";
     public static final String SHOP     = "shop";
+    public static final String PAUSE    = "pause";
+    public static final String SEED_PICKER = "seedpicker";
 
     // ---- FXML resource paths ----
     public static final String MAIN_MENU_FXML  = "/view/fxml/MainMenu.fxml";
