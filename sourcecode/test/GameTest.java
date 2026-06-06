@@ -38,9 +38,15 @@ public class GameTest extends Application {
         DemoController demoController = new DemoController(gameManager, farmMap);
         ShopController domainShop = new ShopController(player, gameManager, farmMap.getGrid());
 
+        // Dùng array 1 phần tử để mockLauncher có thể gọi ngược lại mainMenu dù nó được khởi tạo sau
+        MainMenuController[] menuRef = new MainMenuController[1];
+
         GameLauncher mockLauncher = new GameLauncher() {
+            private boolean sessionActive = false;
+
             @Override
             public void startNewFarm() {
+                sessionActive = true;
                 router.show(Screens.INGAME);
             }
             @Override
@@ -49,11 +55,14 @@ public class GameTest extends Application {
             }
             @Override
             public boolean hasSession() {
-                return true;
+                return sessionActive;
             }
             @Override
             public void returnToMainMenu() {
                 router.closeOverlay();
+                if (menuRef[0] != null) {
+                    menuRef[0].setContinueEnabled(sessionActive);
+                }
                 router.show(Screens.MAIN_MENU);
             }
             @Override
@@ -65,8 +74,9 @@ public class GameTest extends Application {
         MainMenuController mainMenu = ScreensLoader
                 .load(router, Screens.MAIN_MENU, Screens.MAIN_MENU_FXML)
                 .getController();
+        menuRef[0] = mainMenu;
         mainMenu.init(router, mockLauncher);
-        mainMenu.setContinueEnabled(true);
+        mainMenu.setContinueEnabled(false);
 
         HelpController help = ScreensLoader
                 .load(router, Screens.HELP, Screens.HELP_FXML)
