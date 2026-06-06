@@ -9,7 +9,7 @@
         prefWidth="1280"
         xmlns="http://javafx.com/javafx/17.0.12"
         xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="view.screen_controller.ShopController">
+        fx:controller="view.screen_controller.ShopViewController">
 
     <!-- ================= TOP ================= -->
 
