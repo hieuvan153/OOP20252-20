@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.crop.Crop;
 import model.crop.GrowthState;
+import model.game_item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -85,8 +86,12 @@ public class Assets {
         SHOP_ICONS.put(name.toLowerCase(), loadImage("/view/assets/shop/" + name + ".png"));
     }
 
-    public static Image getShopIcon(String itemName) {
-        return SHOP_ICONS.get(itemName.toLowerCase());
+    public static Image getShopIcon(String key) {
+        return SHOP_ICONS.get(key);
+    }
+    public static Image getShopIcon(Item item) {
+        String key = ItemAssetRegistry.getKey(item);
+        return getShopIcon(key);
     }
 
     // LOAD IMAGE
@@ -94,12 +99,14 @@ public class Assets {
         return new Image(Assets.class.getResourceAsStream(path));
     }
 
-    public static Image getCropImage(Crop crop) {
+    public static Image getCropSprite(Crop crop) {
         if (crop == null) {
             return null;
         }
 
+        String cropKey = CropAssetRegistry.getKey(crop);
         GrowthState state = crop.getCurrentState();
+
         switch (state) {
             case DEAD:
                 return DEAD_STATE;
@@ -112,7 +119,7 @@ public class Assets {
             case MATURE:
                 return MATURE_STATE;
             case HARVEST:
-                return getShopIcon(crop.getAssetKey());
+                return getShopIcon(cropKey);
 
             default:
                 return null;
