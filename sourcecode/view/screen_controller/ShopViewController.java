@@ -60,7 +60,7 @@ public final class ShopViewController {
     }
 
     private VBox makeCard(final ItemManager entry, Item prototype) {
-        ImageView icon = Assets.imageView(Assets.getShopIcon(prototype.getAssetKey()), 40);
+        ImageView icon = Assets.imageView(Assets.getShopIcon(prototype), 40);
 
         Label name = new Label(prototype.getName().toUpperCase());
         name.getStyleClass().add("shop-name");

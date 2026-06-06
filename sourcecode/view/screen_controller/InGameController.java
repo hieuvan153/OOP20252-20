@@ -439,7 +439,7 @@ public class InGameController {
                 cropView.setImage(null);
                 progressBar.setVisible(false);
             } else {
-                cropView.setImage(Assets.getCropImage(crop));
+                cropView.setImage(Assets.getCropSprite(crop));
                 progressBar.setVisible(
                         crop.getCurrentState() != GrowthState.HARVEST
                                 && crop.getCurrentState() != GrowthState.DEAD
@@ -450,11 +450,6 @@ public class InGameController {
             }
             pestMark.setVisible(cell.getPest() != null);
         }
-    }
-
-    private static String abbrev(String name) {
-        if (name == null || name.isEmpty()) return "?";
-        return name.length() <= 4 ? name : name.substring(0, 4);
     }
 
     private static String lerpHex(String a, String b, double t) {
