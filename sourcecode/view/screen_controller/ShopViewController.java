@@ -8,11 +8,13 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import model.game_item.Item;
 import model.game_item.Seed;
 import model.player_inventory.Player;
+import view.assets.Assets;
 import view.screen_util.SceneRouter;
 import view.screen_util.Screens;
 
@@ -58,6 +60,8 @@ public final class ShopViewController {
     }
 
     private VBox makeCard(final ItemManager entry, Item prototype) {
+        ImageView icon = Assets.imageView(Assets.getShopIcon(prototype.getAssetKey()), 40);
+
         Label name = new Label(prototype.getName().toUpperCase());
         name.getStyleClass().add("shop-name");
 
@@ -77,7 +81,8 @@ public final class ShopViewController {
             }
         });
 
-        VBox card = new VBox(8, name, stats, price, buy);
+
+        VBox card = new VBox(8, icon, name, stats, price, buy);
         card.setAlignment(Pos.CENTER_LEFT);
         card.getStyleClass().add("shop-card");
         card.setPrefWidth(260);

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -13,6 +14,8 @@ import javafx.scene.layout.VBox;
 import model.game_item.Item;
 import model.game_item.Seed;
 import model.player_inventory.Player;
+import view.assets.Assets;
+
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -49,7 +52,7 @@ public final class SeedPickerController {
                     if (e.getKey() instanceof Seed) {
                         Seed seed = (Seed) e.getKey();
                         any = true;
-                        list.getChildren().add(makeRow(seed.getName(), e.getValue()));
+                        list.getChildren().add(makeRow(seed, e.getValue()));
                     }
                 }
             }
@@ -64,12 +67,10 @@ public final class SeedPickerController {
         }
     }
 
-    private HBox makeRow(final String seedName, int qty) {
-        Region icon = new Region();
-        icon.setMinSize(36, 36);
-        icon.setStyle("-fx-background-color: #6B8E23; -fx-background-radius: 6;");
+    private HBox makeRow(final Seed seed, int qty) {
+        ImageView icon = Assets.imageView(Assets.getShopIcon(seed.getAssetKey()), 36);
 
-        Label name = new Label(seedName + "  x" + qty);
+        Label name = new Label(seed.getName() + "  x" + qty);
         name.getStyleClass().add("seed-name");
 
         Region spacer = new Region();
@@ -81,7 +82,7 @@ public final class SeedPickerController {
         use.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                onPick.accept(seedName);
+                onPick.accept(seed.getName());
                 onClose.run();
             }
         });
