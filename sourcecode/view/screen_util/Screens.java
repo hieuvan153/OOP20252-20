@@ -20,5 +20,5 @@ public final class Screens {
     public static final String SEED_PICKER_FXML = "/view/fxml/SeedPicker.fxml";
 
     // ---- stylesheet ----
-    // public static final String STYLESHEET = "/viewfx/css/styles.css";
+    public static final String STYLESHEET = "/css/Style.css";
 }
