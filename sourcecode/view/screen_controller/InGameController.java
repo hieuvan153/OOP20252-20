@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +31,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import model.crop.Crop;
 import model.crop.GrowthState;
+import model.game_item.Item;
 import model.player_inventory.Player;
 import model.soil.Cell;
 import model.soil.CellState;
@@ -116,7 +118,8 @@ public class InGameController {
         this.hand           = new Hand(player);
         this.fertilizerBag  = new FertilizerBag("Standard Fertilizer", player);
 
-        moneyField.textProperty().bind(player.moneyProperty().asString("$%d"));
+        moneyField.setText("$" + player.getMoney());
+        player.addMoneyObserver(amount -> moneyField.setText("$" + amount));
         wireButtons();
         setKeyHandlers();
         buildGrid();
@@ -222,6 +225,10 @@ public class InGameController {
     private void selectTool(ToolStrategy tool, ToggleButton btn) {
         playerController.useTool(tool);
         if (btn != null) btn.setSelected(true);
+        // switching away from the seed bag restores its default icon
+        if (tool != seedBag) {
+            resetSeedToolIcon();
+        }
         ToolStrategy cur = playerController.getCurrentTool();
         toolLabel.setText("TOOL : " + (cur != null ? cur.getName().toUpperCase() : "(none)"));
     }
@@ -236,8 +243,19 @@ public class InGameController {
         if (router.hasOverlay()) return;
         boolean ok = playerController.interactWithCell(cell);
         notify(ok ? "" : "Can't use this tool here");
+        revertSeedToolIfEmpty();
         refreshAll();
         updateHover(cell);
+    }
+
+    /** If the seed bag is active and its loaded seed is used up, revert to the default icon. */
+    private void revertSeedToolIfEmpty() {
+        if (playerController.getCurrentTool() != seedBag) return;
+        String name = seedBag.getSeedName();
+        Item item = (name != null) ? player.getInventory().findByName(name) : null;
+        if (item == null || player.getInventory().getItemCount(item) <= 0) {
+            resetSeedToolIcon();
+        }
     }
 
     private void togglePause() {
@@ -261,6 +279,7 @@ public class InGameController {
                         public void accept(String name) {
                             seedBag.loadSeed(name);
                             selectTool(seedBag, seedTool);
+                            updateSeedToolIcon(name);
                             InGameController.this.notify("Loaded " + name);
                         }
                     },
@@ -359,6 +378,24 @@ public class InGameController {
         sunWeatherButton.setGraphic(Assets.imageView(Assets.SUN_ICON, 42));
         rainWeatherButton.setGraphic(Assets.imageView(Assets.RAIN_ICON, 42));
         dryWeatherButton.setGraphic(Assets.imageView(Assets.DRY_ICON, 42));
+    }
+
+    /** Restore the seed-bag hotbar button to its default icon (used when switching tools). */
+    private void resetSeedToolIcon() {
+        seedTool.setGraphic(Assets.imageView(Assets.SEED_ICON, 48));
+    }
+
+    /** Show the picked seed's sprite on the seed-bag hotbar button (falls back to the default icon). */
+    private void updateSeedToolIcon(String seedName) {
+        Image sprite = null;
+        Item item = player.getInventory().findByName(seedName);
+        if (item != null) {
+            sprite = Assets.getShopIcon(item);
+        }
+        if (sprite == null) {
+            sprite = Assets.SEED_ICON;
+        }
+        seedTool.setGraphic(Assets.imageView(sprite, 48));
     }
 
     // ======================== cell tile ========================
