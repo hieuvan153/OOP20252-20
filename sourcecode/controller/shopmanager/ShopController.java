@@ -107,9 +107,4 @@ public class ShopController extends BaseController {
         lastMessage = "Sold " + harvested.getName() + " for $" + payout + ".";
         return true;
     }
-
-    @Override
-    public void dayEnded() {
-
-    }
 }
