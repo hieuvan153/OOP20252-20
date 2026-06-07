@@ -10,6 +10,7 @@ public final class Screens {
     public static final String SHOP     = "shop";
     public static final String PAUSE    = "pause";
     public static final String SEED_PICKER = "seedpicker";
+    public static final String GAME_OVER = "gameover";
 
     // ---- FXML resource paths ----
     public static final String MAIN_MENU_FXML  = "/view/fxml/MainMenu.fxml";
@@ -18,6 +19,7 @@ public final class Screens {
     public static final String SHOP_FXML        = "/view/fxml/Shop.fxml";
     public static final String PAUSE_FXML       = "/view/fxml/Pause.fxml";
     public static final String SEED_PICKER_FXML = "/view/fxml/SeedPicker.fxml";
+    public static final String GAME_OVER_FXML   = "/view/fxml/GameOver.fxml";
 
     // ---- stylesheet ----
     public static final String STYLESHEET = "/view/css/Style.css";
