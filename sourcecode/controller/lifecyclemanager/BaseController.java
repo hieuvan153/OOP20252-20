@@ -13,7 +13,4 @@ public abstract class BaseController implements DayObserver {
         this.grid = Objects.requireNonNull(grid, "grid must not be null");
         gameManager.addObserver(this);
     }
-
-    @Override
-    public abstract void dayEnded();
 }
