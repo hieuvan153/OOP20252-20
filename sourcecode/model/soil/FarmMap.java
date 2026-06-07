@@ -46,7 +46,7 @@ public class FarmMap {
     }
 
     /** Apply the daily tick to every cell. Used by controller */
-    public void updateAllCells(int day, Weather weather) {
+    public void updateAllCells(Weather weather) {
         for (int r = 0; r < height; r++) {
             for (int c = 0; c < width; c++) {
                 grid[r][c].dailyUpdate(weather);
