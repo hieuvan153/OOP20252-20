@@ -3,22 +3,16 @@ package model.soil;
 import model.weather.Weather;
 import utils.Constant;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-
 public class FarmMap {
     private final Cell[][] grid;
     private final int width;
     private final int height;
-    private final Random rnd = new Random();
 
     public FarmMap(int width, int height) {
         if (width <= 0 || height <= 0) {
-            throw new IllegalArgumentException(
-                    "FarmMap dimensions must be > 0 (width=" + width + ", height=" + height + ")");
+            throw new IllegalArgumentException("FarmMap dimensions must be > 0 (width=" + width + ", height=" + height + ")");
         }
+
         this.width = width;
         this.height = height;
         this.grid = new Cell[height][width];
@@ -58,15 +52,5 @@ public class FarmMap {
                 grid[r][c].dailyUpdate(weather);
             }
         }
-    }
-
-    /** Pick n distinct random cells from the grid (useful for pest spawns). */
-    public List<Cell> getRandomCellsNumber_of(int n) {
-        List<Cell> all = new ArrayList<>();
-        for (int r = 0; r < height; r++) {
-            Collections.addAll(all, grid[r]);
-        }
-        Collections.shuffle(all, rnd);
-        return all.subList(0, Math.min(n, all.size()));
     }
 }
