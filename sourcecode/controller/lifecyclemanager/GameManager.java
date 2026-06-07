@@ -20,6 +20,7 @@ public class GameManager {
 
     private int currentDay;
     private Weather currentWeather;
+    private GameStatus status;
     private final List<DayObserver> observers = new ArrayList<>();
 
     public void addObserver(DayObserver observer) {
@@ -39,19 +40,28 @@ public class GameManager {
         this.currentWeather = currentWeather;
     }
 
+    public GameStatus getStatus() {
+        return status;
+    }
+    public void setStatus(GameStatus status) {
+        this.status = Objects.requireNonNull(status, "status must not be null");
+    }
+
     public void reset() {
         observers.clear();
         currentDay = 1;
         currentWeather = Weather.of(WeatherType.SUNNY);
+        status = GameStatus.RUNNING;
     }
 
     public void advanceDay() {
-        for (DayObserver obs : observers) {
+        if (status != GameStatus.RUNNING) {
+            return;
+        }
+        List<DayObserver> snapshot = new ArrayList<>(observers);
+        for (DayObserver obs : snapshot) {
             obs.dayEnded();
         }
         currentDay++;
-        if (currentWeather != null) {
-            currentWeather.tickDuration();
-        }
     }
 }

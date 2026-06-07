@@ -1,0 +1,31 @@
+package controller.lifecyclemanager;
+
+import model.player_inventory.Player;
+import model.soil.FarmMap;
+
+import java.util.List;
+import java.util.Objects;
+
+public class GameOverController extends BaseController implements DayObserver {
+    private final Player player;
+    private final FarmMap farmMap;
+    private final List<GameOverCondition> conditions;
+    private final GameOverListener listener;
+    private final int graceDays;
+    private int consecutiveLostDays;
+
+    public GameOverController(GameManager gameManager, FarmMap farmMap, Player player, List<GameOverCondition> conditions, GameOverListener listener, int graceDays) {
+        super(gameManager, farmMap.getGrid());
+        this.farmMap = farmMap;
+        this.player = Objects.requireNonNull(player, "player must not be null");
+        this.conditions = List.copyOf(conditions);
+        this.listener = Objects.requireNonNull(listener, "listener must not be null");
+        this.graceDays = Math.max(0, graceDays);
+        gameManager.addObserver(this);
+    }
+
+    @Override
+    public void dayEnded() {
+
+    }
+}
