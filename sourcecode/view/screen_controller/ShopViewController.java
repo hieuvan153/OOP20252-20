@@ -37,8 +37,7 @@ public final class ShopViewController {
         this.player = player;
         this.shop   = shop;
 
-        moneyLabel.setText("$" + player.getMoney());
-        player.addMoneyObserver(amount -> moneyLabel.setText("$" + amount));
+        moneyLabel.textProperty().bind(player.moneyProperty().asString("$%d"));
 
         // Reset the status banner every time the shop is (re)opened
         if (statusLabel != null) {

@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
@@ -26,9 +27,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import model.crop.Crop;
 import model.crop.GrowthState;
 import model.game_item.Item;
@@ -62,6 +72,7 @@ public class InGameController {
     // --- layout + labels ---
     @FXML private BorderPane rootPane;
     @FXML private GridPane farmGrid;
+    @FXML private Region weatherOverlay;
     @FXML private Label toolLabel;
     @FXML private TextField notificationField;
     @FXML private TextField dayField;
@@ -90,6 +101,8 @@ public class InGameController {
     private Tile[][] tiles;
     private Cell hovered;
 
+    private static final CornerRadii TILE_RADII = new CornerRadii(6);
+
     // ======================== FXML lifecycle ========================
 
     @FXML
@@ -103,7 +116,7 @@ public class InGameController {
         this.router = router;
     }
 
-    // Inject the live session and wire all gameplay. Called once after load.
+    // Inject the live session and wire all gameplay. Called once after load
     public void setGame(FarmMap farmMap, Player player, GameManager gameManager,
                         PlayerController playerController, DemoController demoController) {
         this.farmMap          = farmMap;
@@ -118,8 +131,7 @@ public class InGameController {
         this.hand           = new Hand(player);
         this.fertilizerBag  = new FertilizerBag("Standard Fertilizer", player);
 
-        moneyField.setText("$" + player.getMoney());
-        player.addMoneyObserver(amount -> moneyField.setText("$" + amount));
+        moneyField.textProperty().bind(player.moneyProperty().asString("$%d"));
         wireButtons();
         setKeyHandlers();
         buildGrid();
@@ -248,7 +260,7 @@ public class InGameController {
         updateHover(cell);
     }
 
-    // If the seed bag is active and its loaded seed is used up, revert to the default icon.
+    // If the seed bag is active and its loaded seed is used up, revert to the default icon
     private void revertSeedToolIfEmpty() {
         if (playerController.getCurrentTool() != seedBag) return;
         String name = seedBag.getSeedName();
@@ -320,7 +332,32 @@ public class InGameController {
         }
         dayField.setText("DAY " + gameManager.getCurrentDay());
         syncWeatherToggles();
+        applyWeatherTheme();
         if (hovered != null) updateHover(hovered);
+    }
+
+    // weather gradient on each weather effect
+    private void applyWeatherTheme() {
+        WeatherType type = gameManager.getCurrentWeather() != null
+                ? gameManager.getCurrentWeather().getType()
+                : WeatherType.SUNNY;
+        final String cls;
+        switch (type) {
+            case RAINY:   cls = "weather-rainy";   break;
+            case DROUGHT: cls = "weather-drought"; break;
+            case SUNNY:
+            default:      cls = "weather-sunny";   break;
+        }
+        setWeatherClass(rootPane, cls);
+        setWeatherClass(weatherOverlay, cls);
+    }
+
+    private static void setWeatherClass(Region node, String cls) {
+        if (node == null) return;
+        node.getStyleClass().removeAll("weather-sunny", "weather-rainy", "weather-drought");
+        if (!node.getStyleClass().contains(cls)) {
+            node.getStyleClass().add(cls);
+        }
     }
 
     private void updateHover(Cell cell) {
@@ -380,12 +417,12 @@ public class InGameController {
         dryWeatherButton.setGraphic(Assets.imageView(Assets.DRY_ICON, 42));
     }
 
-    // Restore the seed-bag hotbar button to its default icon (used when switching tools).
+    // Restore the seed-bag hotbar button to its default icon (used when switching tools)
     private void resetSeedToolIcon() {
         seedTool.setGraphic(Assets.imageView(Assets.SEED_ICON, 48));
     }
 
-    // Show the picked seed's sprite on the seed-bag hotbar button (falls back to the default icon).
+    // Show the picked seed's sprite on the seed-bag hotbar button (falls back to the default icon)
     private void updateSeedToolIcon(String seedName) {
         Image sprite = null;
         Item item = player.getInventory().findByName(seedName);
@@ -406,6 +443,10 @@ public class InGameController {
         final ImageView pestMark = Assets.imageView(Assets.BEETLE_ICON, 20);
         final ImageView cropView = new ImageView();
         final ProgressBar progressBar = new ProgressBar();
+
+        private String lastBg;
+        private String lastBorder;
+        private double lastBw = Double.NaN;
 
         Tile(final Cell cell) {
             this.cell = cell;
@@ -467,11 +508,16 @@ public class InGameController {
                 border = "#E0B83C"; bw = 2;
             }
 
-            pane.setStyle("-fx-background-color: " + bg + ";"
-                    + "-fx-background-radius: 6;"
-                    + "-fx-border-color: " + border + ";"
-                    + "-fx-border-width: " + bw + ";"
-                    + "-fx-border-radius: 6;");
+            if (!bg.equals(lastBg) || !border.equals(lastBorder) || bw != lastBw) {
+                pane.setBackground(new Background(
+                        new BackgroundFill(Color.web(bg), TILE_RADII, Insets.EMPTY)));
+                pane.setBorder(new Border(
+                        new BorderStroke(Color.web(border), BorderStrokeStyle.SOLID,
+                                TILE_RADII, new BorderWidths(bw))));
+                lastBg = bg;
+                lastBorder = border;
+                lastBw = bw;
+            }
 
             if (crop == null) {
                 cropView.setImage(null);
