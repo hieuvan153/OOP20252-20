@@ -29,3 +29,4 @@
 - **Phùng Đức Thịnh:** Model (Crop + Soil + Weather + Utils + Diagram) + Report
 
 ## Link Video Demo
+[![Demo](https://img.youtube.com/vi/AhFmDBq2Wgg/maxresdefault.jpg)](https://www.youtube.com/watch?v=AhFmDBq2Wgg)
