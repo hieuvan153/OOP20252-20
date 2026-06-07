@@ -11,6 +11,7 @@ public class FarmController extends BaseController implements DayObserver {
     public FarmController(GameManager gameManager, FarmMap farmMap) {
         super(gameManager, farmMap.getGrid());
         this.farmMap = farmMap;
+        gameManager.addObserver(this);
     }
 
     public void processGrowth() {
