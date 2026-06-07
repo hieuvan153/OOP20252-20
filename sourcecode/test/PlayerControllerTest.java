@@ -6,7 +6,6 @@ import controller.lifecyclemanager.GameManager;
 import model.player_inventory.Player;
 import model.soil.Cell;
 import model.soil.CellState;
-import model.soil.FarmMap;
 
 public class PlayerControllerTest {
     private static void check(boolean pass, String msg) {
@@ -18,7 +17,7 @@ public class PlayerControllerTest {
     private static PlayerController fresh() {
         GameManager gm = GameManager.getInstance();
         gm.reset();
-        return new PlayerController(new Player(), gm, new FarmMap().getGrid());
+        return new PlayerController(new Player(), gm);
     }
 
     public static void run() {

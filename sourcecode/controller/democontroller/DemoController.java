@@ -14,10 +14,9 @@ import java.util.Random;
 
 public class DemoController extends BaseController {
     private final FarmMap farmMap;
-    private final Random rng = new Random();
 
     public DemoController(GameManager gameManager, FarmMap farmMap) {
-        super(gameManager, farmMap.getGrid());
+        super(gameManager);
         this.farmMap = farmMap;
     }
 

@@ -9,13 +9,13 @@ public class FarmController extends BaseController implements DayObserver {
     private final FarmMap farmMap;
 
     public FarmController(GameManager gameManager, FarmMap farmMap) {
-        super(gameManager, farmMap.getGrid());
+        super(gameManager);
         this.farmMap = farmMap;
         gameManager.addObserver(this);
     }
 
     public void processGrowth() {
-        farmMap.updateAllCells(gameManager.getCurrentDay(), gameManager.getCurrentWeather());
+        farmMap.updateAllCells(gameManager.getCurrentWeather());
     }
 
     @Override

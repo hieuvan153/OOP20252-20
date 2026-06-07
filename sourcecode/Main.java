@@ -111,8 +111,8 @@ public class Main extends Application implements GameLauncher {
         // (construction) order, so they are created in exactly that order here.
         farmController = new FarmController(gameManager, farmMap);
         environmentController = new EnvironmentController(gameManager, farmMap);
-        shopController = new ShopController(player, gameManager, farmMap.getGrid());
-        playerController = new PlayerController(player, gameManager, farmMap.getGrid());
+        shopController = new ShopController(player, gameManager);
+        playerController = new PlayerController(player, gameManager);
         demoController = new DemoController(gameManager, farmMap);
 
         // Simulator: the only outcome is a loss (bankruptcy) — no win condition.
@@ -170,7 +170,9 @@ public class Main extends Application implements GameLauncher {
 
     // ---------------- helpers ----------------
 
-    /** Called by the GameOverController (via listener) when the run ends (bankruptcy). */
+    /**
+     * Called by the GameOverController (via listener) when the run ends (bankruptcy).
+     */
     private void showGameOver(GameStatus status) {
         if (gameOverView != null) {
             gameOverView.showResult(gameManager.getCurrentDay(), player.getMoney());
@@ -178,7 +180,9 @@ public class Main extends Application implements GameLauncher {
         router.show(Screens.GAME_OVER);
     }
 
-    /** Lowest price among the seeds in the shop catalog (used for bankruptcy). */
+    /**
+     * Lowest price among the seeds in the shop catalog (used for bankruptcy).
+     */
     private int cheapestSeedPrice(ShopController shop) {
         int min = Integer.MAX_VALUE;
         for (ItemManager entry : shop.getCatalog()) {
@@ -193,3 +197,4 @@ public class Main extends Application implements GameLauncher {
     public static void main(String[] args) {
         launch(args);
     }
+}

@@ -34,9 +34,9 @@ public class GameTest extends Application {
         gameManager.reset();
         Player player = new Player();
         FarmMap farmMap = new FarmMap();
-        PlayerController playerController = new PlayerController(player, gameManager, farmMap.getGrid());
+        PlayerController playerController = new PlayerController(player, gameManager);
         DemoController demoController = new DemoController(gameManager, farmMap);
-        ShopController domainShop = new ShopController(player, gameManager, farmMap.getGrid());
+        ShopController domainShop = new ShopController(player, gameManager);
 
         MainMenuController[] menuRef = new MainMenuController[1];
 
