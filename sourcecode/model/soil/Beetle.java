@@ -18,9 +18,4 @@ public class Beetle implements Pest {
         daysAlive++;
         crop.addStress(DAMAGE);
     }
-
-    @Override
-    public String getName() {
-        return "Beetle";
-    }
 }
