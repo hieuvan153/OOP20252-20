@@ -37,7 +37,18 @@ public final class ShopViewController {
         this.player = player;
         this.shop   = shop;
 
-        moneyLabel.textProperty().bind(player.moneyProperty().asString("$%d"));
+        moneyLabel.setText("$" + player.getMoney());
+        player.addMoneyObserver(amount -> moneyLabel.setText("$" + amount));
+
+        // Reset the status banner every time the shop is (re)opened, so a leftover
+        // "Bought ..." message doesn't linger after leaving and coming back.
+        if (statusLabel != null) {
+            statusLabel.sceneProperty().addListener((obs, oldScene, newScene) -> {
+                if (newScene != null) {
+                    statusLabel.setText("Welcome to the shop!");
+                }
+            });
+        }
 
         build();
     }
