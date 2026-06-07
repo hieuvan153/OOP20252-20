@@ -1,4 +1,4 @@
-/* Titles  */
+/* ---------- Titles ---------- */
 .title-xl {
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
     -fx-font-size: 64px;
@@ -25,7 +25,7 @@
     -fx-text-fill: #F4E5B8;
 }
 
-/* Buttons  */
+/* ---------- Buttons ---------- */
 .btn-menu {
     -fx-min-width: 360px;
     -fx-font-size: 20px;
@@ -62,7 +62,7 @@
 }
 .btn-wood:hover { -fx-background-color: #241A0E, #946033; }
 
-/*  Panels / overlays  */
+/* ---------- Panels / overlays ---------- */
 .overlay-scrim { -fx-background-color: rgba(0,0,0,0.55); }
 
 .wood-panel {
@@ -81,7 +81,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 16, 0.2, 0, 6);
 }
 
-/*  Seed picker rows */
+/* ---------- Seed picker rows ---------- */
 .seed-row {
     -fx-background-color: rgba(255,255,255,0.35);
     -fx-background-radius: 8;
@@ -92,7 +92,7 @@
 .transparent-scroll,
 .transparent-scroll .viewport { -fx-background-color: transparent; }
 
-/* Shop cards */
+/* ---------- Shop cards ---------- */
 .shop-card {
     -fx-background-color: #9C6B3A, #FBF0D0;
     -fx-background-insets: 0, 2;
@@ -103,7 +103,7 @@
 .shop-name  { -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #3A2910; }
 .shop-stats { -fx-font-size: 12px; -fx-text-fill: #5E3A1C; }
 
-/* Progress Bar */
+/* ---------- Progress Bar ----------- */
 .progress-bar {
     -fx-accent: #7ED957;
 }
@@ -117,7 +117,9 @@
     -fx-background-radius: 8;
 }
 
-/* ROOT */
+/* =========================================================
+   ROOT
+   ========================================================= */
 
 .ingame-root {
     -fx-background-color:
@@ -131,7 +133,42 @@
 }
 
 
-/* FARM GRID */
+/* =========================================================
+   WEATHER ATMOSPHERE
+   Backdrop gradient (rootPane) swaps with the weather, and a soft
+   mouse-transparent wash (.weather-overlay) is laid over the grid.
+   ========================================================= */
+
+.ingame-root.weather-sunny {
+    -fx-background-color:
+            linear-gradient(to bottom, #EAF4FF 0%, #F8EFD8 28%, #E3C89B 72%, #C59C68 100%);
+}
+.ingame-root.weather-rainy {
+    -fx-background-color:
+            linear-gradient(to bottom, #A2B6CB 0%, #8595AB 32%, #6B7A8E 72%, #54616F 100%);
+}
+.ingame-root.weather-drought {
+    -fx-background-color:
+            linear-gradient(to bottom, #FBE0A0 0%, #F2B257 32%, #D9852F 72%, #B25E25 100%);
+}
+
+.weather-overlay {
+    -fx-background-radius: 20;
+}
+.weather-overlay.weather-sunny {
+    -fx-background-color: rgba(255, 236, 160, 0.10);
+}
+.weather-overlay.weather-rainy {
+    -fx-background-color: rgba(64, 116, 184, 0.22);
+}
+.weather-overlay.weather-drought {
+    -fx-background-color: rgba(224, 138, 44, 0.18);
+}
+
+
+/* =========================================================
+   FARM GRID
+   ========================================================= */
 
 .farm-grid {
     -fx-padding: 16;
@@ -153,7 +190,9 @@
 }
 
 
-/* TOP BAR */
+/* =========================================================
+   TOP BAR
+   ========================================================= */
 
 .top-bar {
     -fx-background-color: rgba(255,255,245,0.72);
@@ -163,7 +202,9 @@
     -fx-padding: 10 14 10 14;
 }
 
-/* NOTIFICATION FIELD */
+/* =========================================================
+   NOTIFICATION FIELD
+   ========================================================= */
 
 .notification-field {
     -fx-background-color: #FFFDF4;
@@ -175,7 +216,9 @@
 }
 
 
-/* RIGHT PANEL */
+/* =========================================================
+   RIGHT PANEL
+   ========================================================= */
 
 .right-panel {
     -fx-background-color: rgba(255,255,250,0.18);
@@ -186,7 +229,9 @@
 }
 
 
-/* DAY DISPLAY */
+/* =========================================================
+   DAY DISPLAY
+   ========================================================= */
 
 .side-display {
     -fx-background-color:
@@ -204,7 +249,9 @@
 }
 
 
-/* MONEY BOX */
+/* =========================================================
+   MONEY BOX
+   ========================================================= */
 
 .money-box {
     -fx-background-color:
@@ -238,7 +285,9 @@
 }
 
 
-/* WEATHER BUTTONS */
+/* =========================================================
+   WEATHER BUTTONS
+   ========================================================= */
 
 .weather-btn {
     -fx-background-color:
@@ -266,7 +315,9 @@
 }
 
 
-/* BOTTOM BAR */
+/* =========================================================
+   BOTTOM BAR
+   ========================================================= */
 
 .bottom-bar {
     -fx-background-color: rgba(70,45,25,0.22);
@@ -275,7 +326,9 @@
 }
 
 
-/* STATUS PANEL */
+/* =========================================================
+   STATUS PANEL
+   ========================================================= */
 
 .status-panel {
     -fx-background-color: rgba(255,255,245,0.50);
@@ -291,7 +344,9 @@
 }
 
 
-/* TOOL HOTBAR */
+/* =========================================================
+   TOOL HOTBAR
+   ========================================================= */
 
 .tool-hotbar {
     -fx-background-color: rgba(90,60,30,0.18);
@@ -303,7 +358,9 @@
 }
 
 
-/* TOOL BUTTONS */
+/* =========================================================
+   TOOL BUTTONS
+   ========================================================= */
 
 .tool-hotbar .toggle-button {
     -fx-background-color:
@@ -335,7 +392,9 @@
 }
 
 
-/* ACTION BUTTONS */
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
 
 .action-panel .button {
     -fx-background-color:
@@ -367,13 +426,17 @@
 }
 
 
-/* LABELS */
+/* =========================================================
+   LABELS
+   ========================================================= */
 
 .label {
     -fx-text-fill: #2F2416;
 }
 
-/* ROOT */
+/* =========================================================
+   ROOT
+   ========================================================= */
 
 .shop-root {
 
@@ -387,7 +450,9 @@
 }
 
 
-/* TOP */
+/* =========================================================
+   TOP
+   ========================================================= */
 
 .shop-top {
 
@@ -422,7 +487,9 @@
 }
 
 
-/* TAB PANE */
+/* =========================================================
+   TAB PANE
+   ========================================================= */
 
 .shop-tabs {
 
@@ -468,7 +535,9 @@
 }
 
 
-/* FLOW AREA */
+/* =========================================================
+   FLOW AREA
+   ========================================================= */
 
 .shop-flow {
 
@@ -484,7 +553,9 @@
 }
 
 
-/* CARD */
+/* =========================================================
+   CARD
+   ========================================================= */
 
 .shop-card {
 
@@ -526,7 +597,9 @@
 }
 
 
-/* TEXT */
+/* =========================================================
+   TEXT
+   ========================================================= */
 
 .shop-name {
 
@@ -545,7 +618,9 @@
 }
 
 
-/* BUY BUTTON */
+/* =========================================================
+   BUY BUTTON
+   ========================================================= */
 
 .btn-gold {
 
@@ -583,7 +658,9 @@
 }
 
 
-/* BOTTOM */
+/* =========================================================
+   BOTTOM
+   ========================================================= */
 
 .shop-bottom {
 
