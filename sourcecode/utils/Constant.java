@@ -17,11 +17,14 @@ public final class Constant {
     public static final int START_MONEY       = 200;
     public static final int FERTILIZER_PRICE  = 25;
 
+    public static final int GAME_OVER_GRACE_DAYS = 2;
+
     // --- Simulation tuning ---
     public static final int GROWTH_RATE        = 20;  // baseline progress added per day
     public static final int STRESS_DECAY       = 15;  // stress recovered per day under good conditions
     public static final int MOISTURE_EVAPORATION = 10; // baseline moisture lost per day (all cells)
     public static final int NUTRIENT_REGEN_RATE  = 5; // nutrient recovered per day on empty soil
+    public static final int CROP_NUTRIENT_USE = 8;
 
     // --- Cell resource bounds ---
     public static final int MAX_NUTRIENT      = 100;
