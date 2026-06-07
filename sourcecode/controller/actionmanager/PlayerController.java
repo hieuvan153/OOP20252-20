@@ -34,9 +34,4 @@ public class PlayerController extends BaseController {
         }
         return currentTool.executeOnTarget(cell);
     }
-
-    @Override
-    public void dayEnded() {
-
-    }
 }

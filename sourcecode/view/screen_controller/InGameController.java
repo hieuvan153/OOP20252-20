@@ -103,7 +103,7 @@ public class InGameController {
         this.router = router;
     }
 
-    /** Inject the live session and wire all gameplay. Called once after load. */
+    // Inject the live session and wire all gameplay. Called once after load.
     public void setGame(FarmMap farmMap, Player player, GameManager gameManager,
                         PlayerController playerController, DemoController demoController) {
         this.farmMap          = farmMap;
@@ -248,7 +248,7 @@ public class InGameController {
         updateHover(cell);
     }
 
-    /** If the seed bag is active and its loaded seed is used up, revert to the default icon. */
+    // If the seed bag is active and its loaded seed is used up, revert to the default icon.
     private void revertSeedToolIfEmpty() {
         if (playerController.getCurrentTool() != seedBag) return;
         String name = seedBag.getSeedName();
@@ -380,12 +380,12 @@ public class InGameController {
         dryWeatherButton.setGraphic(Assets.imageView(Assets.DRY_ICON, 42));
     }
 
-    /** Restore the seed-bag hotbar button to its default icon (used when switching tools). */
+    // Restore the seed-bag hotbar button to its default icon (used when switching tools).
     private void resetSeedToolIcon() {
         seedTool.setGraphic(Assets.imageView(Assets.SEED_ICON, 48));
     }
 
-    /** Show the picked seed's sprite on the seed-bag hotbar button (falls back to the default icon). */
+    // Show the picked seed's sprite on the seed-bag hotbar button (falls back to the default icon).
     private void updateSeedToolIcon(String seedName) {
         Image sprite = null;
         Item item = player.getInventory().findByName(seedName);

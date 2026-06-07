@@ -38,7 +38,6 @@ public class GameTest extends Application {
         DemoController demoController = new DemoController(gameManager, farmMap);
         ShopController domainShop = new ShopController(player, gameManager, farmMap.getGrid());
 
-        // Dùng array 1 phần tử để mockLauncher có thể gọi ngược lại mainMenu dù nó được khởi tạo sau
         MainMenuController[] menuRef = new MainMenuController[1];
 
         GameLauncher mockLauncher = new GameLauncher() {

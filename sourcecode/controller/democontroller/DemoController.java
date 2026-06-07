@@ -24,6 +24,11 @@ public class DemoController extends BaseController {
     public Weather forceWeather(WeatherType type) {
         Weather w = Weather.of(type);
         gameManager.setCurrentWeather(w);
+        for (Cell[] row : farmMap.getGrid()) {
+            for (Cell c : row) {
+                w.applyWeatherEffect(c);
+            }
+        }
         return w;
     }
 
@@ -68,10 +73,5 @@ public class DemoController extends BaseController {
                 }
             }
         }
-    }
-
-    @Override
-    public void dayEnded() {
-
     }
 }

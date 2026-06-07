@@ -19,7 +19,7 @@ public class GameOverControllerTest {
     }
 
     public static void run() {
-        // ---------- BankruptcyCondition (LOST) ----------
+        // Bankruptcy Condition (LOST)
         BankruptcyCondition broke = new BankruptcyCondition(10);
 
         check(broke.evaluate(new Player(), new FarmMap(), 1) == GameStatus.RUNNING,
@@ -45,10 +45,9 @@ public class GameOverControllerTest {
         check(broke.evaluate(noMoneyLivingCrop, mapWithCrop, 1) == GameStatus.RUNNING,
                 "a living crop can still be harvested for income");
 
-        // ---------- GameOverController integration ----------
+        // GameOverController integration
         GameManager gm = GameManager.getInstance();
 
-        // A loss is delayed by graceDays so the withered farm stays visible.
         gm.reset();
         final GameStatus[] firedLose = {null};
         Player loser = new Player();
@@ -61,12 +60,10 @@ public class GameOverControllerTest {
         check(firedLose[0] == GameStatus.LOST, "loss should be announced after the grace period");
         check(gm.getStatus() == GameStatus.LOST, "GameManager status should be LOST");
 
-        // Once the run is over, advanceDay is a no-op.
         int dayAtLoss = gm.getCurrentDay();
         gm.advanceDay();
         check(gm.getCurrentDay() == dayAtLoss, "advanceDay must be a no-op after the run ends");
 
-        // graceDays = 0 announces the loss immediately.
         gm.reset();
         final GameStatus[] firedNow = {null};
         Player loser0 = new Player();

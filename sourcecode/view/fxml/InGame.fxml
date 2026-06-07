@@ -7,10 +7,6 @@
 
 <BorderPane fx:id="rootPane" styleClass="ingame-root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screen_controller.InGameController">
 
-   <!-- ====================================================== -->
-   <!-- TOP BAR -->
-   <!-- ====================================================== -->
-
    <top>
 
       <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="10">
@@ -34,11 +30,6 @@
 
    </top>
 
-
-   <!-- ====================================================== -->
-   <!-- CENTER GAME GRID -->
-   <!-- ====================================================== -->
-
    <center>
 
       <StackPane>
@@ -53,11 +44,6 @@
 
    </center>
 
-
-   <!-- ====================================================== -->
-   <!-- RIGHT PANEL -->
-   <!-- ====================================================== -->
-
    <right>
 
       <VBox styleClass="right-panel" alignment="TOP_CENTER" prefWidth="180" spacing="20">
@@ -67,12 +53,7 @@
          </padding>
 
 
-         <!-- DAY -->
-
          <TextField fx:id="dayField" styleClass="side-display" alignment="CENTER" editable="false" text="DAY 1" />
-
-
-         <!-- WEATHER SELECT -->
 
          <VBox alignment="CENTER" spacing="10">
 
@@ -92,9 +73,6 @@
 
          </VBox>
 
-
-         <!-- MONEY -->
-
          <StackPane styleClass="money-box">
 
             <Label
@@ -112,11 +90,6 @@
 
    </right>
 
-
-   <!-- ====================================================== -->
-   <!-- BOTTOM PANEL -->
-   <!-- ====================================================== -->
-
    <bottom>
 
       <HBox alignment="CENTER_LEFT" styleClass="bottom-bar" prefHeight="108.0" prefWidth="1280.0" spacing="30">
@@ -124,11 +97,6 @@
          <padding>
             <Insets bottom="15" left="15" right="15" top="15" />
          </padding>
-
-
-         <!-- ================================================== -->
-         <!-- STATUS DASHBOARD -->
-         <!-- ================================================== -->
 
          <VBox styleClass="status-panel" prefHeight="100.0" prefWidth="320.0" spacing="8">
 
@@ -178,11 +146,6 @@
 
          <HBox HBox.hgrow="ALWAYS" />
 
-
-         <!-- ================================================== -->
-         <!-- TOOL HOTBAR -->
-         <!-- ================================================== -->
-
          <HBox styleClass="tool-hotbar" alignment="CENTER" spacing="10">
 
             <ToggleButton fx:id="seedTool" mnemonicParsing="false" prefHeight="70" prefWidth="70" text="SEED">
@@ -208,14 +171,7 @@
          </HBox>
 
 
-         <!-- SPACER -->
-
          <HBox HBox.hgrow="ALWAYS" />
-
-
-         <!-- ================================================== -->
-         <!-- ACTION BUTTONS -->
-         <!-- ================================================== -->
 
          <VBox styleClass="action-panel" spacing="10">
 

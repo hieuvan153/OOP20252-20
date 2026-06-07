@@ -3,11 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<!--
-  Seed-picker overlay. The list of owned seeds is data-driven, so the controller
-  fills `list` at init time; the FXML supplies the card + scroll chrome.
--->
-
 <StackPane alignment="CENTER" styleClass="overlay-scrim" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="view.screen_controller.SeedPickerController">
     <children>
         <VBox alignment="CENTER" maxHeight="380" maxWidth="420" spacing="12" styleClass="parchment-card">
