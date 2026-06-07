@@ -33,7 +33,7 @@ public abstract class Crop {
         this.currentState = GrowthState.SEED;
     }
 
-    // ---------- Getters ----------
+    // Getters
     public int  getCurrentStress() {
         return currentStress;
 
@@ -60,13 +60,13 @@ public abstract class Crop {
         return currentState == GrowthState.DEAD || currentState == GrowthState.ROTTEN;
     }
 
-    // ---------- Daily simulation ----------
+    //  Daily simulation
     public void dailyUpdate(Cell hostCell, Weather weather) {
         // this cell must not be null - has a crop on it
         Objects.requireNonNull(hostCell, "hostCell must not be null in dailyUpdate");
         if (isDead()) return;
 
-        // --- accumulate stress and check death ---
+        //  accumulate stress and check death
         int stressDelta = stressManager.calculateStress(hostCell, weather);
         currentStress = safeCheckingValue(currentStress + stressDelta, 0, cropData.getMaxStress());
         if (currentStress >= cropData.getMaxStress()) {
@@ -74,7 +74,7 @@ public abstract class Crop {
             return;
         }
 
-        // --- accumulate growth, but only if not already at peak ---
+        //  accumulate growth, but only if not already at peak
         if (currentState != GrowthState.HARVEST) {
             int growthDelta = growthManager.calculateGrowthProgress(hostCell, weather);
 
@@ -94,11 +94,11 @@ public abstract class Crop {
             currentState = next;
         }
 
-        // --- consume soil resources because the crop drank/ate ---
-        hostCell.updateMoistureAmount(-10);
-        hostCell.updateNutrientAmount(-8);
+        //  consume soil resources because the crop drank/ate
+        hostCell.updateMoistureAmount(-cropData.getWaterPerDay());
+        hostCell.updateNutrientAmount(-Constant.CROP_NUTRIENT_USE);
 
-        // --- detect if it is rotten ---
+        // detect if it is rotten
         if (currentState == GrowthState.HARVEST) {
             daysAtHarvest++;
             if (daysAtHarvest > stateManager.getHarvestPatience()) {
