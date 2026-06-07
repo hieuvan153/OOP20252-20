@@ -2,16 +2,12 @@ package controller.shopmanager;
 
 import controller.lifecyclemanager.BaseController;
 import controller.lifecyclemanager.GameManager;
-import model.crop.Crop;
 import model.game_item.*;
 import model.player_inventory.Player;
-import model.soil.Cell;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ShopController extends BaseController {
     private final List<ItemManager> catalog = new ArrayList<>();
