@@ -26,7 +26,6 @@ public class ShopControllerTest {
         return new ShopController(player, gm, map.getGrid());
     }
 
-    /** First seed entry in the catalog. */
     private static ItemManager firstSeed(ShopController shop) {
         for (ItemManager im : shop.getCatalog()) {
             if (im.create() instanceof Seed) return im;
@@ -34,7 +33,7 @@ public class ShopControllerTest {
         throw new AssertionError("catalog has no seed entry");
     }
 
-    /** Plant a tomato on the cell and grow it under good conditions until harvestable. */
+    // Plant a tomato on the cell and grow it under good conditions until harvestable.
     private static Crop ripenTomato(Cell cell) {
         Crop crop = new TomatoSeed().createCrop();
         cell.till();
@@ -49,12 +48,11 @@ public class ShopControllerTest {
     }
 
     public static void run() {
-        // ---------- catalog ----------
         ShopController shop = fresh(new Player(), new FarmMap());
         check(!shop.getCatalog().isEmpty(), "catalog should not be empty");
         check(!shop.getCatalogPrices().isEmpty(), "catalog prices should be published");
 
-        // ---------- buyItem: happy path ----------
+        // buyItem
         Player buyer = new Player();
         ShopController shop2 = fresh(buyer, new FarmMap());
         ItemManager seedEntry = firstSeed(shop2);
@@ -68,18 +66,18 @@ public class ShopControllerTest {
                 "the bought seed lands in the inventory");
         check(shop2.getLastMessage().startsWith("Bought"), "a success message is recorded");
 
-        // ---------- buyItem: invalid requests ----------
+        // buyItem: invalid requests
         check(!shop2.buyItem(null, 1), "null entry is rejected");
         check(!shop2.buyItem(seedEntry, 0), "non-positive quantity is rejected");
 
-        // ---------- buyItem: not enough money ----------
+        // buyItem: not enough money
         Player broke = new Player();
         ShopController shop3 = fresh(broke, new FarmMap());
         broke.deductMoney(broke.getMoney()); // -> 0
         check(!shop3.buyItem(firstSeed(shop3), 1), "cannot buy without money");
         check(shop3.getLastMessage().contains("Not enough money"), "an insufficient-funds message is recorded");
 
-        // ---------- sellCrop: negative cases ----------
+        // sellCrop: negative cases
         Player seller = new Player();
         FarmMap map = new FarmMap();
         ShopController shop4 = fresh(seller, map);
@@ -91,7 +89,7 @@ public class ShopControllerTest {
         unripe.plantCrop(new TomatoSeed().createCrop());
         check(!shop4.sellCrop(unripe), "selling an unripe crop fails");
 
-        // ---------- sellCrop: happy path ----------
+        // sellCrop
         Cell ripe = map.getCell(1, 0);
         Crop crop = ripenTomato(ripe);
         check(crop.isHarvestable(), "test setup: tomato should ripen under good conditions");

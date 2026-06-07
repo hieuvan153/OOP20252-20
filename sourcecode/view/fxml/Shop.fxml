@@ -6,8 +6,6 @@
 
 <BorderPane prefHeight="720" prefWidth="1280" styleClass="shop-root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screen_controller.ShopViewController">
 
-    <!-- ================= TOP ================= -->
-
     <top>
 
         <StackPane BorderPane.alignment="CENTER">
@@ -22,9 +20,6 @@
 
     </top>
 
-
-    <!-- ================= CENTER ================= -->
-
     <center>
 
         <VBox alignment="TOP_CENTER" spacing="20">
@@ -36,8 +31,6 @@
             <TabPane prefHeight="500" prefWidth="950" styleClass="shop-tabs" tabClosingPolicy="UNAVAILABLE">
 
                 <tabs>
-
-                    <!-- SEEDS -->
 
                     <Tab text="Seeds">
 
@@ -54,9 +47,6 @@
                         </content>
 
                     </Tab>
-
-
-                    <!-- FERTILIZER -->
 
                     <Tab text="Fertilizer">
 
@@ -82,9 +72,6 @@
 
     </center>
 
-
-    <!-- ================= BOTTOM ================= -->
-
     <bottom>
 
         <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" spacing="20" styleClass="shop-bottom" BorderPane.alignment="CENTER">
@@ -93,14 +80,9 @@
                 <Insets bottom="15" left="30" right="30" top="15" />
             </padding>
 
-            <!-- MONEY -->
-
             <Label fx:id="moneyLabel" style="-fx-font-size: 24;                           -fx-font-weight: bold;" styleClass="shop-money" text="\$200" />
 
             <Pane HBox.hgrow="ALWAYS" />
-
-
-            <!-- PAGE CONTROL -->
 
             <HBox alignment="CENTER" spacing="10">
 
@@ -109,9 +91,6 @@
             </HBox>
 
             <Pane minHeight="-Infinity" prefHeight="50.0" HBox.hgrow="ALWAYS" />
-
-
-            <!-- BACK -->
 
             <Button onAction="#backToGame" prefHeight="40" prefWidth="100" styleClass="shop-back-btn" text="BACK" />
 

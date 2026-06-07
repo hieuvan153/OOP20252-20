@@ -8,12 +8,12 @@ public interface GameLauncher {
     // Resume the current session, or start a new one if none exists yet.
     void continueFarm();
 
-    // @return {@code true} once at least one farm has been started.
+    // return true once at least one farm has been started.
     boolean hasSession();
 
     // Navigate back to the main menu (the session is kept).
     void returnToMainMenu();
 
-    //Quit the application.
+    // Quit the application.
     void quit();
 }
