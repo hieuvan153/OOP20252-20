@@ -9,8 +9,6 @@ import view.screen_util.GameLauncher;
 import view.screen_util.SceneRouter;
 import view.screen_util.Screens;
 
-import java.io.IOException;
-
 public final class MainMenuController {
 
     @FXML
@@ -67,7 +65,7 @@ public final class MainMenuController {
         alert.setTitle("Quit Game");
         alert.setHeaderText("Are you sure you want to quit?");
         alert.setContentText("All unsaved progress will be lost.");
-        
+
         if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
             Platform.exit();
             System.exit(0);
