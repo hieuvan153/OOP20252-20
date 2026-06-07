@@ -736,3 +736,18 @@
     -fx-scale-x: 1.03;
     -fx-scale-y: 1.03;
 }
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 14;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #8B5A2B;
+    -fx-background-radius: 10;
+}
+
+.scroll-pane,
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
