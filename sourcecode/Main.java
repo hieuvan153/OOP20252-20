@@ -111,8 +111,8 @@ public class Main extends Application implements GameLauncher {
         // (construction) order, so they are created in exactly that order here.
         farmController = new FarmController(gameManager, farmMap);
         environmentController = new EnvironmentController(gameManager, farmMap);
-        shopController = new ShopController(player, gameManager, farmMap.getGrid());
-        playerController = new PlayerController(player, gameManager, farmMap.getGrid());
+        shopController = new ShopController(player, gameManager);
+        playerController = new PlayerController(player, gameManager);
         demoController = new DemoController(gameManager, farmMap);
 
         // Simulator: the only outcome is a loss (bankruptcy) — no win condition.

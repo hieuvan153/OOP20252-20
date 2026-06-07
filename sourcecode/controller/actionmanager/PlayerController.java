@@ -9,8 +9,8 @@ public class PlayerController extends BaseController {
     private final Player player;
     private ToolStrategy currentTool;
 
-    public PlayerController(Player player, GameManager gameManager, Cell[][] grid) {
-        super(gameManager, grid);
+    public PlayerController(Player player, GameManager gameManager) {
+        super(gameManager);
         this.player = player;
         this.currentTool = new Hand(player);
     }

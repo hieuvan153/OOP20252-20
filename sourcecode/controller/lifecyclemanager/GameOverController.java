@@ -15,7 +15,7 @@ public class GameOverController extends BaseController implements DayObserver {
     private int consecutiveLostDays;
 
     public GameOverController(GameManager gameManager, FarmMap farmMap, Player player, List<GameOverCondition> conditions, GameOverListener listener, int graceDays) {
-        super(gameManager, farmMap.getGrid());
+        super(gameManager);
         this.farmMap = farmMap;
         this.player = Objects.requireNonNull(player, "player must not be null");
         this.conditions = List.copyOf(conditions);

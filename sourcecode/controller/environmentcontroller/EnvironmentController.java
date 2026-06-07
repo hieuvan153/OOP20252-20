@@ -10,7 +10,6 @@ import model.weather.Weather;
 import model.weather.WeatherType;
 import utils.Constant;
 
-import java.text.CompactNumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,7 +23,7 @@ public class EnvironmentController extends BaseController implements DayObserver
     }
 
     public EnvironmentController(GameManager gameManager, FarmMap farmMap, Random rng) {
-        super(gameManager, farmMap.getGrid());
+        super(gameManager);
         this.farmMap = farmMap;
         this.rng = rng;
         gameManager.addObserver(this);
@@ -55,7 +54,7 @@ public class EnvironmentController extends BaseController implements DayObserver
         List<Cell> candidates = new ArrayList<>();
         for (Cell[] row : farmMap.getGrid()) {
             for (Cell c : row) {
-                if (c.getCrop() != null && c.getPest() != null) {
+                if (c.getCrop() != null && c.getPest() == null) {
                     candidates.add(c);
                 }
             }

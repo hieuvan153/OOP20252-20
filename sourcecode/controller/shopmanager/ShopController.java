@@ -2,25 +2,20 @@ package controller.shopmanager;
 
 import controller.lifecyclemanager.BaseController;
 import controller.lifecyclemanager.GameManager;
-import model.crop.Crop;
 import model.game_item.*;
 import model.player_inventory.Player;
-import model.soil.Cell;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ShopController extends BaseController {
     private final List<ItemManager> catalog = new ArrayList<>();
-    private Map<String, Integer> catalogPrices;
     private String lastMessage = "";
     private final Player player;
 
-    public ShopController(Player player, GameManager gameManager, Cell[][] grid) {
-        super(gameManager, grid);
+    public ShopController(Player player, GameManager gameManager) {
+        super(gameManager);
         this.player = player;
         seedCatalog();
     }
@@ -32,21 +27,12 @@ public class ShopController extends BaseController {
         catalog.add(new SeedItem("Corn Seed", CornSeed::new));
         catalog.add(new SeedItem("Water Rice Seed", WaterRiceSeed::new));
         catalog.add(new FertilizerItem("Standard Fertilizer", StandardFertilizer::new));
-
-        Map<String, Integer> prices =new LinkedHashMap<>();
-        for (ItemManager im : catalog) {
-            prices.put(im.getItem(), im.create().getPrice());
-        }
-        catalogPrices = Collections.unmodifiableMap(prices);
     }
     public List<ItemManager> getCatalog() {
         return Collections.unmodifiableList(catalog);
     }
     public String getLastMessage() {
         return lastMessage;
-    }
-    public Map<String, Integer> getCatalogPrices() {
-        return catalogPrices;
     }
 
     public boolean buyItem(ItemManager entry, int quantity) {
@@ -86,25 +72,6 @@ public class ShopController extends BaseController {
         }
         player.getInventory().addItem(canonical, quantity);
         lastMessage = "Bought " + quantity + " x " + prototype.getName() + " for $" + totalCost + ".";
-        return true;
-    }
-
-    public boolean sellCrop(Cell cell) {
-        if (cell == null || cell.getCrop() == null) {
-            lastMessage = "Nothing to sell here.";
-            return false;
-        }
-
-        Crop crop = cell.getCrop();
-        if (!crop.isHarvestable()) {
-            lastMessage = "Crop is not ripe yet.";
-            return false;
-        }
-
-        Crop harvested = cell.harvestCrop();
-        int payout = harvested.getCropData().getValue();
-        player.addMoney(payout);
-        lastMessage = "Sold " + harvested.getName() + " for $" + payout + ".";
         return true;
     }
 }
