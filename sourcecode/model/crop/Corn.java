@@ -2,7 +2,7 @@ package model.crop;
 
 public class Corn extends Crop {
     public Corn() {
-        super(new CropData(12, 45, 85),
+        super(new CropData(12, 45, 85, 10),
                 new StandardStateManager(4, 3),
                 new StandardStressManager(),
                 new StandardGrowthManager());

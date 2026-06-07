@@ -96,8 +96,8 @@ public abstract class Crop {
         }
 
         // --- consume soil resources because the crop drank/ate ---
-        hostCell.updateMoistureAmount(-10);
-        hostCell.updateNutrientAmount(-8);
+        hostCell.updateMoistureAmount(-getCropData().getWaterPerDay());
+        hostCell.updateNutrientAmount(-Constant.CROP_NUTRIENT_USE);
 
         // --- detect if it is rotten ---
         if (currentState == GrowthState.HARVEST) {

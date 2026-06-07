@@ -2,7 +2,7 @@ package model.crop;
 
 public class Tomato extends Crop {
     public Tomato() {
-        super(new CropData(15, 60, 80),
+        super(new CropData(15, 60, 80, 10),
                 new StandardStateManager(4, 3),
                 new StandardStressManager(),
                 new SunLovingGrowthManager());
