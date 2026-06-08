@@ -8,7 +8,7 @@
 - **Subject:** Object-oriented Programming (IT3100E)
 - **Class code:** 166241
 - **Instructor:** Nguyễn Thị Thu Trang ([trangntt.for.student@gmail.com](mailto:trangntt.for.student@gmail.com))
-- **Group name:** OOP.20251-20
+- **Group name:** OOP.20252-20
 
 ## Participants
 
@@ -25,7 +25,7 @@
 - **Nguyễn Lê Hiểu Văn:** Controller + Controller Diagram + Task Assignment + Report + Slide
 - **Nguyễn Duy Tân:** View (In Game + Shop) + General Class Diagram + Crop Logic + Tester
 - **Nguyễn Minh Trí:** Model (Player + Inventory + Game Item + Exception + Main + Diagram) + Video Demo + Slide
-- **Hồ Sỹ Hoàng Anh:** View (Main Menu + Help) + View Diagram + Slide
+- **Hồ Sỹ Hoàng Anh:** View (Main Menu + Help + Pause + Seed Picker + Screen Utility) + View Diagram + Slide
 - **Phùng Đức Thịnh:** Model (Crop + Soil + Weather + Utils + Diagram) + Report
 
 ## Link Video Demo
