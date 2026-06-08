@@ -22,11 +22,11 @@
 
 ## Task Assignment
 
-- **Nguyễn Lê Hiểu Văn:** Controller + Controller Diagram + Task Assignment + Report + Slide
-- **Nguyễn Duy Tân:** View (In Game + Shop) + General Class Diagram + Crop Logic + Tester
-- **Nguyễn Minh Trí:** Model (Player + Inventory + Game Item + Exception + Main + Diagram) + Video Demo + Slide
-- **Hồ Sỹ Hoàng Anh:** View (Main Menu + Help + Pause + Seed Picker + Screen Utility) + View Diagram + Slide
-- **Phùng Đức Thịnh:** Model (Crop + Soil + Weather + Utils + Diagram) + Report
+- **Nguyễn Lê Hiểu Văn:** Use case diagram + Controller + Controller Diagram + Task Assignment + Report + Slide
+- **Nguyễn Duy Tân:** Use case diagram + View (In Game + Shop) + General Class Diagram + Crop Logic + Tester
+- **Nguyễn Minh Trí:** Use case diagram + Model (Player + Inventory + Game Item + Exception + Main + Diagram) + Video Demo + Slide
+- **Hồ Sỹ Hoàng Anh:** Use case diagram + View (Main Menu + Help + Pause + Seed Picker + Screen Utility) + View Diagram + Slide
+- **Phùng Đức Thịnh:** Use case diagram + Model (Crop + Soil + Weather + Utils + Diagram) + Crop Logic + Report
 
 ## Link Video Demo
 [![Demo](https://img.youtube.com/vi/AhFmDBq2Wgg/maxresdefault.jpg)](https://www.youtube.com/watch?v=AhFmDBq2Wgg)
