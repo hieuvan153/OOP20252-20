@@ -27,16 +27,16 @@ public final class HelpController {
           1 Seed Bag   2 Hoe   3 Watering Can   4 Hand   5 Fertilizer
 
         CELL COLOURS
-          green        UNTILLED  (use the hoe)
-          light brown  tilled, dry
-          dark brown   tilled, watered
-          gold flecks  high nutrient (fertilized)
-          gold glow    crop is RIPE  (use the hand)
-          red border   crop is DEAD  (use the hoe)
+          green                     UNTILLED  (use the hoe)
+          light brown           tilled, dry
+          dark brown           tilled, watered
+          gold flecks            high nutrient (fertilized)
+          gold glow             crop is RIPE  (use the hand)
+          red border            crop is DEAD  (use the hoe)
 
         DEMO KEYS
-          S Sunny    R Rainy    D Drought
-          F Fast-grow all   P Spawn pest   T Till all
+          [S] Sunny    [R] Rainy    [D] Drought
+          [F] Fast-grow all   [P] Spawn pest   [T] Till all
 
         PESTS
           A beetle gives ONE day of grace. If it is still on a
