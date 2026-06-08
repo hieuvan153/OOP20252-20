@@ -1,4 +1,4 @@
-# OOP.20251-20
+# OOP.20252-20
 
 **Hanoi University of Science and Technology** *School of Information and Communications Technology*
 
@@ -8,7 +8,7 @@
 - **Subject:** Object-oriented Programming (IT3100E)
 - **Class code:** 166241
 - **Instructor:** Nguyễn Thị Thu Trang ([trangntt.for.student@gmail.com](mailto:trangntt.for.student@gmail.com))
-- **Group name:** OOP.20251-20
+- **Group name:** OOP.20252-20
 
 ## Participants
 
